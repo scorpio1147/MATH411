@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+
+\title{HW 10 - MATH411}
+\author{Danesh Sivakumar}
+\date{April 16, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1 (Exercise 4, Page 447)}
+Consider the equation 
+\[ e^{2x-y} + \cos{(x^2 + xy)} - 2 - 2y = 0 \qquad \text{$(x, y)$ in $\mathbb{R}^2$}\]
+Does the set of solutions of this equation in a neighborhood of the solution $(0, 0)$ implicitly define one of the components of the point $(x, y)$ as a function of the other component? If so, compute the derivative of this function (these functions?) at the point 0.
+\begin{proof}
+Yes. Let $f(x, y) = e^{2x-y} + \cos{(x^2 + xy)} - 2 - 2y$; then because $f$ is a composition, sum and product of continuously differentiable functions, it follows that $f$ is continuously differentiable. Notice that $f(0, 0) = 0$, and
+\[  \nabla f(x, y) = (2e^{2x-y}-(2x + y) \sin(x^2 + xy), -e^{2x-y}-x \sin(x^2 + xy)-2)\]
+and 
+\[ \nabla f(0, 0) = (2, -3) \neq (0, 0)\]
+so that by Dini's Theorem, there exists a neighborhood of $(0, 0)$ such that one of the components is implicitly defined by the other component (and vice versa). To calculate the derivative, use the following formulas:
+\[ \frac{\partial f}{\partial x}(x, g(x)) + \frac{\partial f}{\partial y}(x, g(x))g'(x) = 0\]
+and 
+\[ \frac{\partial f}{\partial x}(f(y), y)f'(y) + \frac{\partial f}{\partial y}(f(y), y)) = 0\]
+which yields that
+\[ g'(0) = \frac{2}{3} \qquad \text{and} \qquad f'(0) = \frac{3}{2}\]
+\end{proof}
+
+
+\subsection*{Problem 2 (Exercise 7, Page 447)}
+Let $\mathcal{O}$ be an open subset of the plane and suppose that the function $f \colon \mathcal{O} \to \mathbb{R}$ is continuously differentiable. At the point $(x_0, y_0)$ in $\mathcal{O}$, suppose that $f(x_0, y_0) = 0$ and that $\nabla f(x_0, y_0) \neq (0, 0)$. Show that the vector $\nabla f(x_0, y_0)$ is orthogonal to the tangent line at $(x_0, y_0)$ of the implicitly defined function.
+\begin{proof} 
+Dini's theorem implies that
+\[ \nabla f(x_0, y_0) = \left( \frac{\partial f}{\partial x}(x_0, y_0), \frac{\partial f}{\partial y}(x_0, y_0)\right)\]
+and
+\[ \frac{\partial f}{\partial x}(x_0, g(x_0)) + \frac{\partial f}{\partial y}(x_0, g(x_0))g'(x_0) = 0\]
+so that in a neighborhood of $(x_0, y_0)$, there is an implicitly defined function defined by $y = g(x)$. Rewriting the above expression yields that
+\[ \langle \nabla f(x_0, y_0), (1, g'(x_0))\rangle = 0 \]
+But $(1, g'(x_0)$ is the tangent line at $(x_0, y_0)$ by definition of the implicitly defined function.
+\end{proof}
+
+\subsection*{Problem 3 (Exercise 8, Page 447)}
+Let $\mathcal{O}$ be an open subset of the plane and suppose that the function $f \colon \mathcal{O} \to \mathbb{R}$ is continuously differentiable. At the point $(x_0, y_0)$ in $\mathcal{O}$, suppose that $f(x_0, y_0) = 0$ and that
+\[ \frac{\partial f}{\partial x}(x_0, y_0) \neq 0, \qquad \frac{\partial f}{\partial y}(x_0, y_0) \neq 0.\]
+Show that the two functions implicitly defined by Dini's theorem, when their domains are properly chosen, are inverses of each other.
+\begin{proof}
+Suppose the two functions are $f(y)$ and $g(x)$. Dini's theorem implies that when the domains are chosen such that $|x-x_0| \leq r$ and $|x-x_0| \leq r$ for some $r > 0$ when $f(x_0, y_0) = 0$, it follows that $y = g(x)$. Then, for all $x \in B_r(x_0)$ and $y \in B_r(y_0)$ it follows that 
+\[ f(g(x)) = f(y) = x\]
+meaning that $f$ and $g$ are inverses of each other.
+\end{proof}
+
+\subsection*{Problem 4 (Exercise 14, Page 448)}
+In addition to the assumptions of Dini's Theorem, assume also that the function $f \colon \mathcal{O} \to \mathbb{R}$ has continuous second-order partial derivatives.
+\begin{enumerate}[label = \alph*.]
+    \item Verify formula (17.13).
+    \item Moreover, suppose that
+    \[ \frac{\partial f}{\partial x} (x_0, y_0) = 0 \qquad \text{and} \qquad \frac{\partial f}{\partial y}(x_0, y_0) \frac{\partial^2 f}{\partial x^2}(x_0, y_0) > 0.\]
+    Prove that the graph of $g \colon I \to \mathbb{R}$ lies below the line $y = y_0$ if $I$ is chosen sufficiently small. 
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}[label = \alph*.] 
+    \item Note that Dini's theorem states that
+    \[ \frac{\partial f}{\partial x}(x, g(x)) + \frac{\partial f}{\partial y}(x, g(x))g'(x) = 0 \]
+    Because $f$ has continuous second order partial derivatives, we can differentiate the expression again; differentiating the first term yields 
+    \[ \frac{\partial^2 f}{\partial x^2}(x, g(x)) + \frac{\partial^2 f}{\partial x \partial y}(x, g(x))g'(x)\]
+    and differentiating the second term yields
+    \[ \frac{\partial^2 f}{\partial x \partial y}(x, g(x))g'(x) + \frac{\partial^2 f}{\partial y^2}(x, g(x))g'(x) \cdot g'(x) + \frac{\partial^2 f}{\partial y^2}(x, g(x)) g''(x)\]
+    Combining these two yields the desired formula
+    \[ \frac{\partial^2 f}{\partial x^2}(x, g(x)) + 2\frac{\partial^2 f}{\partial x \partial y}(x, g(x))g'(x) + \frac{\partial^2 f}{\partial y^2}(x, g(x))[g'(x)]^2 + \frac{\partial f}{\partial y}(x, g(x))g''(x) = 0\]
+    \item Formula (17.13) implies that 
+    \[ g''(x_0) = \frac{-\frac{\partial^2 f}{\partial x^2}(x_0, g(x_0)) + 2\frac{\partial^2 f}{\partial x \partial y}(x_0, g(x_0))g'(x_0) + \frac{\partial^2 f}{\partial y^2}(x_0, g(x_0))[g'(x_0)]^2}{\frac{\partial f}{\partial y}(x_0, g(x_0))}\]
+    Notice that when $|y - y_0| < r$ for the $r > 0$ as defined by Dini's theorem, we have that for the sufficiently small interval
+    \[ g''(x_0) = \frac{-\frac{\partial^2 f}{\partial x^2}(x_0, y_0) + 2\frac{\partial^2 f}{\partial x \partial y}(x_0, y_0)g'(x_0) + \frac{\partial^2 f}{\partial y^2}(x_0, y_0)[g'(x_0)]^2}{\frac{\partial f}{\partial y}(x_0, y_0)}\]
+    thus demonstrating that the graph lies below the line $y = y_0$.
+\end{enumerate}
+\end{proof}
+
+For the following exercises, use the Implicit Function Theorem to analyze the solutions of the given systems of equations near the solution $\textbf{0}$.
+
+\subsection*{Problem 5 (Exercise 2, Page 453)}
+$\begin{cases} a^3 + a^2b + \sin{(a + b + c)} = 0 \\ \ln{(1 + a^2)} + 2a + (bc)^4 = 0 \qquad \text{$(a, b, c)$ in $\mathbb{R}^3$} \end{cases}$
+\begin{proof}
+Observe that $(0, 0, 0)$ is a solution, and $\mathbb{R}^3$ is open. Also, note that $F(a, b, c) = (a^3 + a^2b + \sin{(a + b + c)}, \ln{(1 + a^2)} + 2a + (bc)^4)$ is a continuously differentiable mapping by the continuous differentiability of the component functions. Notice that the derivative matrix is 
+\[ DF = \begin{bmatrix} 3a^2+2a\cos(a+b+c) & a^2 + \cos(a+b+c) & \cos(a+b+c) \\
+\frac{2a}{1+a^2} + 2 & 4(bc)^3 \cdot c & 4(bc)^3 \cdot b 
+\end{bmatrix}\]
+and $DF(0) = \begin{bmatrix} 1 & 1 & 1 \\ 2 & 0 & 0 \end{bmatrix}$, meaning that the derivative matrix whose components are for $a$ and $b$ is equal to $\begin{bmatrix} 1 & 1 \\ 2 & 0 \end{bmatrix}$ and is invertible. Thus, the implicit function theorem allows us to select $r>0$ such that $(f(c), g(c), c)$ is a solution of the system of equations if $c < r$ and $a^2 + b^2 < r^2$, and $f$ and $g$ are continuously differentiable functions. If $(a, b, c) \in \mathbb{R}^3$ is a solution of the system and $a^2 + b^2 < r^2$ and $c<r$, then $a = f(c)$ and $b = g(c)$.
+\end{proof}
+
+\subsection*{Problem 6 (Exercise 3, Page 454)}
+$\begin{cases} (uv)^4 + (u + s)^3 + t = 0 \\ \sin{(uv)} + e^{v+t^2} - 1 = 0 \qquad \text{$(u, v, s, t)$ in $\mathbb{R}^4$}\end{cases}$
+\begin{proof}
+Observe that $(0, 0, 0, 0)$ is a solution, and $\mathbb{R}^4$ is open. Also, note that $F(u, v, s, t) = ((uv)^4 + (u + s)^3 + t, \sin{(uv)} + e^{v+t^2} - 1)$ is a continuously differentiable mapping by the continuous differentiability of the component functions. Notice that the derivative matrix is 
+\[ DF = \begin{bmatrix} 2(uv) \cdot v + 3(u+s)^2 & 2(uv) \cdot u & 3(u+s)^2 & 1 \\
+v\cos(uv) & u\cos(uv) + e^{v+t^2} & 0 & 2t \cdot e^{v+t^2} 
+\end{bmatrix}\]
+and $DF(0) = \begin{bmatrix} 0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \end{bmatrix}$, meaning that the derivative matrix whose components are for $v$ and $t$ is equal to $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ and is invertible. Thus, the implicit function theorem allows us to select $r>0$ such that $(u, f(u, s), s, g(u, s))$ is a solution of the system of equations if $u^2 + s^2 < r^2$, and $f$ and $g$ are continuously differentiable functions. If $(u, v, s, t) \in \mathbb{R}^4$ is a solution of the system and $u^2 + s^2 < r^2$ and $v^2 + t^2 < r^2$, then $v = f(u, s)$ and $t = g(u, s)$.
+\end{proof}
+
+\subsection*{Problem 7 (Exercise 5, Page 454)}
+$e^{x^2} + y^2 + z - 4xy^3 - 1 = 0 \qquad \text{$(x, y, z)$ in $\mathbb{R}^3$}$
+\begin{proof}
+Note that $(0, 0, 0)$ is a solution to the given system. Also note that $\mathbb{R}^3$ is open. Also, $f(x, y, z) = e^{x^2} + y^2 + z - 4xy^3 - 1$ is continuously differentiable by the composition, sum and products of continuously differentiable functions. The derivative matrix is 
+\[ DF = \begin{bmatrix} 2x \cdot e^{x^2} - 4y^3 & 2y-12xy^2 & 1\end{bmatrix}\]
+and $DF(0) = \begin{bmatrix} 0 & 0 & 1\end{bmatrix}$. Because the last component is nonzero, the implicit function theorem allows us to select $r>0$ such that if $x^2 + y^2 < r^2$, then $(x, y, g(x, y))$ is a solution to the system of equations. If $(x, y, z) \in \mathbb{R}^3$ is a solution and $z < r$, then $z = g(x, y)$.
+\end{proof}
+
+
+\end{document}
