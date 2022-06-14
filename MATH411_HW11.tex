@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+\DeclareMathOperator{\vol}{vol}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+
+\title{HW 11 - MATH411}
+\author{Danesh Sivakumar}
+\date{April 16, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1 (Exercise 5, Page 481)}
+Let $\textbf{I}$ be a generalized rectangle in $\mathbb{R}^n$ and suppose that the function $f \colon \textbf{I} \to \mathbb{R}$ is integrable. Assume that $f(\textbf{x}) \geq 0$ if $\textbf{x}$ is a point in $\textbf{I}$ with a rational component. Prove that $\int_{\textbf{I}} f \geq 0$.
+\begin{proof}
+Because $f$ is integrable, there exists an Archmedean sequence of partitions $\textbf{P}_k$ of $\textbf{I}$. Because the rationals are dense in $\mathbb{R}$, it follows that for each rectangle $\textbf{J}$, $M(f, \textbf{J}) \geq 0 $. Thus, it follows that the upper Darboux sum $U(f, \textbf{P}_k) \geq 0$. The fact that the function is integrable means that we can take the limit as $k$ tends to $\infty$, resulting in
+\[ \int_{\textbf{I}} f = \lim_{k \to \infty}U(f, \textbf{P}_k) \geq 0\]
+\end{proof}
+
+
+\subsection*{Problem 2 (Exercise 10, Page 482)}
+Let $\textbf{I}$ be a generalized rectangle in $\mathbb{R}^2$ and suppose that the bounded function $f \colon \textbf{I} \to \mathbb{R}$ has the value $0$ on the interior of $\textbf{I}$. Show that $f \colon \textbf{I} \to \mathbb{R}$ is integrable and that $\int_{\textbf{I}} f = 0$. Is the same result true for a generalized rectangle $\textbf{I}$ in $\mathbb{R}^n$?
+\begin{proof} 
+We prove the general case. Take the regular partition $\textbf{P}_k$ of the generalized rectangle into $k$ intervals in each component. Because $f$ is bounded, take $M > 0$ such that $|f| < M$. Observe that all rectangles except two in each dimension will not share an edge with the boundary of $\textbf{I}$, meaning that there are $(k-2)^n$ rectangles that do not share any edge with the boundary. Thus, the number of rectangles that have nonzero values is equal to $k^n - (k-2)^n$. Thus it follows that 
+\[ 0 \leq |U(f, \textbf{P}_k) - L(f, \textbf{P}_k)| \leq \sum_{\textbf{J} \in \textbf{P}_k}|M_\textbf{J} - m_\textbf{J}|\text{vol}\textbf{J} \leq \frac{2M(k^n-(k-2)^n)}{k^n}\]
+\[\frac{2M(k^n-(k-2)^n)}{k^n} = 2M\left[ 1 - (1 - \frac{2}{k})^n\right] \to 0 \qquad \text{as $k \to \infty$}\]
+Also note that
+\[ |U(f, \textbf{P}_k)| \leq \sum_{\textbf{J} \in \textbf{P}_k}|M_\textbf{J}|\text{vol}\textbf{J} \leq M\frac{k^n - (k-2)^n}{k^n} \to 0 \qquad \text{as $k \to \infty$}\]
+which means that by triangle inequality
+\[ |U(f, \textbf{P}_k) - L(f, \textbf{P}_k)| \leq |U(f, \textbf{P}_k)| + |L(f, \textbf{P}_k)| \to 0 \qquad \text{as $k \to \infty$}\]
+meaning that
+\[ |L(f, \textbf{P}_k)| \to 0 \qquad \text{as $k \to \infty$} \]
+Because the limit of the upper and lower Darboux sums are equal, it follows from the definition of the Riemann integral that $f$ is integrable, and
+\[\int_{\textbf{I}} f = \lim_{k \to \infty} U(f, \textbf{P}_k) = 0\]
+
+\end{proof}
+
+\subsection*{Problem 3 (Exercise 7, Page 482)}
+For the generalized rectangle $\textbf{I} = [0, 1] \times [0, 1]$ in the plane $\mathbb{R}^2$, define
+\[ f(x, y) = \begin{cases} 5 \qquad \text{if $(x, y)$ is in $\textbf{I}$ and $x > 1/2$}
+\\ 1 \qquad \text{if $(x, y)$ is in $\textbf{I}$ and $x \leq 1/2$}
+\end{cases}\]
+Use the Archimedes-Riemann Theorem to show that the function $f \colon \textbf{I} \to \mathbb{R}$ is integrable.
+\begin{proof}
+Let $P_k = [(0, 1/2 - 1/3k, 1/2 + 1/3k, 1] \times [0, 1]$. We have that $U(f, P_k) = (1/2 - 1/3k) + 5(2/3k) + 5(1/2-1/3k)$ and $L(f, P_k) = (1/2 - 1/3k) + (2/3k) + 5(1/2 - 1/3k)$. Thus $U(f, P_k) - L(f, P_k) = 1/2k \to 0$, thus by the Archimedes Riemann theorem $f$ is integrable.
+\end{proof}
+
+\subsection*{Problem 4 (Exercise 11, Page 482)}
+For the rectangle $\textbf{I} = [0, 1] \times [0, 1]$ in the plane $\mathbb{R}^2$, define the function $f \colon \textbf{I} \to \mathbb{R}$ by
+\[ f(x, y) = xy \qquad \text{for $(x, y)$ in $\textbf{I}$}\]
+Use the Archimedes-Riemann Theorem to evaluate $\int_{\textbf{I}} f$.
+\begin{proof}
+Let $\bf{P}_k$ be the regular partition of $[0,1] \times [0, 1]$. Each rectangle in the partition has area $1/k^2$ and for indices $i$ and $j$ between $1$ and $k$, we set \[\bf{J} = \left[\frac{i-1}{k},\frac{i}{k}\right] \times \left[\frac{j-1}{k},\frac{j}{k}\right]\] then \[m(f,\bf{J}) = \frac{(i-1)(j-1)}{k^2} \quad \text{and}\quad M(f,\bf{J}) = \frac{ij}{k^2}.\] It follows that
+      \[ U(f,\bf{P}_k) = \sum_{\bf{J}\in\bf{P}_k} M(f,\bf{J}) \vol \bf{J} = \sum_{1\leq i, j \leq k} \frac{ij}{k^4} = \frac{1}{k^4} \sum_{i=1}^k i \left[\sum_{j=1}^k j\right] = \frac{1}{k^4} \left[\frac{k(k+1)}{2}\right]^2 \]
+      Similarly, we note that \[L(f,\bf{P}_k) = \frac{1}{k^4} \left[\frac{k(k-1)}{2}\right]^2.\] We observe that \[\lim_{k\to\infty} U(f,\bf{P}_k) = 1/4 \qquad \text{and}\quad \lim_{k\to\infty} L(f,\bf{P}_k) = 1/4.\] Thus we deduce that $\{\bf{P}_k\}$ is an Archimedean sequence and it follows from the Archimedes-Riemann Theoerem that $f$ is integrable and \[\int_{\bf{I}} f = 1/4.\]
+\end{proof}
+
+
+\subsection*{Problem 5 (Exercise 8, Page 489)}
+Let $\{\textbf{u}_k\}$ be a convergent sequence in $\mathbb{R}^n$. Show that the set $\{\textbf{u}_k \mid k \in \mathbb{N}\}$ has Jordan content 0.
+\begin{proof}
+Suppose that $\{\textbf{u}_k\}$ converges to $\textbf{u}$. Let $\varepsilon > 0$ be arbitrary and take $r>0$ such that $r < \left(\frac{\varepsilon}{2}\right)^n$. By the convergence of $\{\textbf{u}_k\}$, there exists $K$ such that for all $k \geq K$ we have that $\textbf{u}_k \in B_{r/2}(\textbf{u})$. We can cover this open ball with the rectangle 
+\[ R_{K+1} = \left[u_1 - \frac{r}{2}, u_1 + \frac{r}{2}\right] \times \cdots \times \left[u_n - \frac{r}{2}, u_n + \frac{r}{2}\right]\]
+where $u = (u_1, \cdots, u_n)$ in components. It follows that $B_{r/2}(\textbf{u}) \subset R_{K+1}$, so that this rectangle covers all of the elements after index $K$. For the finitely many elements with index $1 \leq i \leq K$, define $R_i$ to be the rectangle of side length $\frac{r}{K^\frac{1}{n}}$ with each $u_i$ in the center of $R_i$. Now let $\mathcal{F}$ be the collection of rectangles $\{R_1, \cdots, R_{K+1}\}$. This covers the set $\{\textbf{u}_k \mid k \in \mathbb{N}\}$ and the sum of volumes is 
+\[ \sum_{i = 1}^{K+1} \text{vol} \textbf{R}_i = K \cdot (\frac{r}{K^{\frac{1}{n}}})^n + r^n = 2r^n < \varepsilon\]
+\end{proof}
+
+\subsection*{Problem 6 (Exercise 10, Page 489)}
+Let $\textbf{I}$ be a generalized rectangle in $\mathbb{R}^n$ and suppose that the function $f \colon \textbf{I} \to \mathbb{R}$ is continuous. Assume that $f(\textbf{x}) \geq 0$ for all points $\textbf{x}$ in $\textbf{I}$. Prove that if $\int_{\textbf{I}} f = 0$, then $f(\textbf{x}) = 0$ for all points $\textbf{x}$ in $\textbf{I}$. Is continuity necessary for this to hold?
+\begin{proof}
+Suppose not; that is, there exists a point $\textbf{x}_0$ such that $f(\textbf{x}_0) > 0 $. By the continuity of $f$, there exists an open ball that contains a rectangle $\textbf{J}$ on which $f(\textbf{x}) > 0$ for all $x \in \textbf{J}$. Because $J$ is a rectangle, it is compact and thus attains its minimum value $m > 0$. The continuity of $f$ implies that it is integrable, so that there exists a sequence of Archimedean partitions such that 
+\[ \int_{\textbf{I}} f = \lim_{k \to \infty}L(f, \textbf{P}_k) = \lim_{k \to \infty} \sum_{\textbf{R} \in \textbf{P}_k} m_{\textbf{R}} \text{vol}\textbf{R} \geq \lim_{k \to \infty} \sum_{\textbf{R} \in \textbf{J}} m_{\textbf{R}} \text{vol}\textbf{R} \]
+\[\geq \lim_{k \to \infty} \sum_{\textbf{R} \in \textbf{J}} m \text{vol}\textbf{R} = \lim_{k\to\infty} m\text{vol}\textbf{J} = m\text{vol}\textbf{J} > 0\]
+But this contradicts the assumption that the integral of $f$ is 0. \\
+The condition that $f$ be continuous is necessary; consider a function $f \colon \textbf{I} \to \mathbb{R}$ such that $f(\textbf{x}) = 0$ for every $\textbf{x} \in \textbf{I}$ except for a single $\textbf{x}_0$ at which $f(\textbf{x}_0) = 1$. This function is integrable because the single point at which the function is discontinuous has Jordan content 0, and the integral is equal to 0.  
+\end{proof}
+
+\end{document}
