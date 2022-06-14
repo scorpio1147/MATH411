@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+\title{HW 4 - MATH411}
+\author{Danesh Sivakumar}
+\date{February 17, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1 (Exercise 1, Page 304)}
+
+Determine which of the following subsets of $\mathbb{R}$ is sequentially compact. Justify your conclusions. 
+\begin{enumerate}[label = \alph*)]
+\item $\{x \text{ in } [0, 1] \mid x \text{ is rational} \}$
+\item $\{x \text{ in } \mathbb{R} \mid x^2 > x \}$
+\item $\{x \text{ in } \mathbb{R} \mid e^x-x^2 \leq 2 \}$
+\end{enumerate}
+
+\begin{proof} \quad \\
+\begin{enumerate}[label = \alph*)]
+\item This set is not sequentially compact; take $\{u_k\} = \frac{1}{3}(1+\frac{1}{k})^k$. Each $u_k$ is rational and in $[0, 1]$, but $\{u_k\} \to \frac{e}{3} \in [0, 1]$ , which is not rational, so it is not closed. Also, because $\mathbb{Q}$ is dense in $\mathbb{R}$, every point in $\mathbb{R}$ is a limit point of $\mathbb{Q}$, so that there exist sequences of rationals converging to an irrational; in particular, there exists sequences of rationals in $[0, 1]$ converging to an irrational in $[0, 1]$.
+\item This set is not sequentially compact; take $\{u_k\} = 1+\frac{1}{k}$. Each $u_k$ is in the set, but $\{u_k\} \to 1$, which is not in the set, so it is not closed.
+\item This set is not sequentially compact, because it is not bounded. To prove so, assume that it is bounded; that is, there exists $M > 0$ such that $|e^x - x^2| \leq M$. Take $x = -\sqrt{M}$; then it follows that $|e^{-\sqrt{M}} - ((-\sqrt{M})^2)| = |e^{-\sqrt{M}} - \sqrt{M}^2| > |0 - \sqrt{M}^2| = M$, a contradiction.     
+\end{enumerate}
+\end{proof}
+
+
+\subsection*{Problem 2 (Exercise 6, Page 304)}
+
+Let $A$ be a subset of $\mathbb{R}^n$ and let the function $f \colon A \to \mathbb{R}$ be continuous. 
+\begin{enumerate}[label = \alph*)]
+\item If $A$ is bounded, is $f(A)$ bounded?
+\item If $A$ is closed, is $f(A)$ closed?
+\end{enumerate}
+
+\begin{proof} \quad \\
+\begin{enumerate}[label = \alph*)]
+\item No; consider $f \colon \mathbb{R} \to \mathbb{R}, f(x) = \frac{1}{x}$ on the set $A = (0, 1)$. Clearly, $A$ is bounded with $M = 1$ and $f$ is continuous by the continuity of quotients of continuous functions. However, $f(A)$ is not bounded; to prove this, suppose that there exists $M > 0$ such that $f(x) \leq M$ for all $x \in (0, 1)$. Consider $x = \frac{1}{M+1}$; then $f(x) = M+1 > M$, a contradiction.
+\item No; consider $f \colon \mathbb{R} \to \mathbb{R}, f(x) = \frac{1}{1+x^2}$ on the set $A = [0, \infty)$. Note that $A$ is closed, but $f(A)$ is $(0, 1]$, which is not closed in $\mathbb{R}$ (consider the sequence $\{u_k\} = \frac{1}{k}$, which converges to $0 \notin A$.)
+\end{enumerate}
+\end{proof}
+
+\subsection*{Problem 3 (Exercise 7, Page 304)}
+Suppose that the function $f \colon \mathbb{R}^n \to \mathbb{R}$ is continuous and that $f(u) \geq ||u||$ for every point $u$ in $\mathbb{R}^n$. Prove that $f^{-1}([0, 1])$ is sequentially compact.
+
+\begin{proof}
+Note that because $[0, 1]$ is closed in $\mathbb{R}$ and $f \colon \mathbb{R}^n \to \mathbb{R}$ is continuous, it follows that $f^{-1}([0, 1])$ is closed in $\mathbb{R}^n$. Let $x \in [0, 1]$ be arbitrary. It follows that $0 \leq f(x) \leq 1$. Because $f(x) \geq ||x||$, we have that $||x|| \leq 1$, meaning that $f^{-1}([0, 1])$ is bounded in $\mathbb{R}^n$. Because $f^{-1}([0, 1])$ is closed and bounded in $\mathbb{R}^n$, it is sequentially compact.
+\end{proof}
+
+\subsection*{Problem 4 (Exercise 8, Page 304)}
+Let $A$ and $B$ be sequentially compact subsets of $\mathbb{R}$. Define $K = \{(x, y) \text{ in } \mathbb{R}^2 \mid x \text{ in } A,\, y \text{ in } B\}$. Prove that $K$ is sequentially compact.
+
+\begin{proof}
+Take any arbitrary ${u_k} \in K$. We have that each $u_k = (x_k, y_k)$, with each $\{x_k\} \in A$ and each $\{y_k\} \in B$. Because $A$ is sequentially compact, there exists a subsequence $\{x_{k_j}\} \to x \in A$. Now consider $\{y_{k_j}\}$; because $B$ is sequentially compact, there exists a subsequence $\{y_{k_{j_l}}\} \to y \in B$. Because $\{x_{k_{j_l}}\} \to x$ as well (any subsequence of a convergent sequence converges to the same value), we use the component-wise convergence criterion to deduce that $\{u_{k_{j_l}}\} \to (x, y) = u \in K$, so that $K$ is sequentially compact.  
+
+\end{proof}
+
+\subsection*{Problem 5}
+Theorem 0.1. \textit{Let $A \subseteq \mathbb{R}^n$ and consider $F \colon A \to \mathbb{R}^m$ a continuous mapping. If $A$ is compact then $F$ is uniformly continuous on $A$.} \\
+Recall that by definition, $F$ is uniformly continuous on $A$ provided that for every $\varepsilon > 0$, there exists $\delta > 0$ such that for all $u, v \in A$, if $||u-v|| < \delta$ then $||F(u) - F(v)|| < \varepsilon$. \\
+The purpose of this problem is to prove the preceding theorem in the following steps.
+\begin{enumerate}
+    \item Assume by contradiction that $F$ is not uniformly continuous on $A$. Show that there exist $\varepsilon_0 > 0$ and sequences $\{u_k\}$ and $\{v_k\}$ in $A$ such that
+    \[ ||u_k - v_k|| < \frac{1}{k} \quad \text{and} \]
+    \[ ||F(u_k) - F(v_k)|| > \varepsilon_0\]
+    \item Use the compactness of $A$ to obtain a subsequence $\{u_{k_l}\}$ converging to some $u \in A$. Then show that $\{v_{k_l}\}$ also converges to $u$.
+    \item Use the continuity of $F$ to derive a contradiction to (0.2).
+\end{enumerate}
+
+\begin{proof}
+\quad \\
+\begin{enumerate}
+    \item Assume that $F$ is not uniformly continuous. Then there exists $\varepsilon > 0$ such that for all $\delta > 0$, there exist $x, y \in A$ such that $|x-y| < \delta$ but $|F(x)-F(y)| \geq \varepsilon$. In particular, set $\delta = 1/k$ for each natural number $k$, and let $\{u_k\}$ be the sequence of $x$ values that satisfy the first inequality and $\{v_k\}$ be the sequence of $y$ values that satisfy the first inequality. Letting $\varepsilon_0 = \varepsilon/2$ gives us the second strict inequality.
+    \item Because $A$ is compact, by definition $\{u_k\}$ has a convergent subsequence $\{u_{k_l}\}$ converging to some $u \in A$, so that for all $\varepsilon > 0$ we have that there exists $L \in \mathbb{N}$ such that for all $l \geq L$, it follows that $||u_{k_l} - u|| < \frac{\varepsilon}{2}$. By the triangle inequality, we have that for $k_l \geq \frac{2}{\varepsilon}$, it follows that $||v_{k_1} - u|| = ||v_{k_1} - u_{k_l} + u_{k_l} - u|| \leq ||v_{k_1} - u_{k_l}|| + ||u_{k_l} - u|| < \frac{1}{k_l} + \frac{\varepsilon}{2} = \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$, so that $\{v_{k_1}\}$ also converges to $u$.
+    \item Because $F$ is continuous, it follows that if $\{u_{k_l}\}$ converges to $u$, then $\{F(u_{k_l})\}$ converges to $F(u)$. Since $\{v_{k_l}\}$ also converges to $u$, it follows that $\{F(v_{k_l})\}$ also converges to $F(u)$. Note that for all $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n \geq N$, we have that $||F(u_{k_1}) - F(v_{k_l})|| = ||F(u_{k_l}) - F(u) + F(u) - F(v_{k_l})|| \leq ||F(u_{k_l}) - F(u) || + ||F(u) - F(v_{k_l})|| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$, which contradicts the fact that for every index $k$, $||F(u_k) - F(v_k)|| > \varepsilon_0$.
+\end{enumerate} 
+\end{proof}
+
+\subsection*{Problem 6 (Problem 4, Page 309)}
+Let $A$ and $B$ be convex subsets of $\mathbb{R}^n$. Prove that the intersection $A \cap B$ is also convex. Is it true that the intersection of two pathwise-connected subsets of $\mathbb{R}^n$ is also pathwise-connected?
+\begin{proof}
+Suppose that there exist $u, v \in A \cap B$; we want to show that there exists a line segment $\{tu + (1-t)v \mid 0 \leq t \leq 1\} \subseteq A \cap B$. Since $u, v \in A \cap B$, in particular $u, v \in A$ and $u, v \in B$. By assumption, $A$ is convex, so that there exists a line segment joining $u$ and $v$ $\{tu + (1-t)v \mid 0 \leq t \leq 1\} \subseteq A$. By assumption, $B$ is convex too, so that there exists a line segment joining $u$ and $v$ $\{tu + (1-t)v \mid 0 \leq t \leq 1\} \subseteq B$. Since $\{tu + (1-t)v \mid 0 \leq t \leq 1\} \subseteq A$ and $\{tu + (1-t)v \mid 0 \leq t \leq 1\} \subseteq B$, it follows that $\{tu + (1-t)v \mid 0 \leq t \leq 1\} \subseteq A\cap B$, so that for any arbitrary points $u, v \in A \cap B$ there exists a line segment joining them within $A \cap B$; thus $A \cap B$ is convex. \\
+No, the intersection of two pathwise-connected subsets of $\mathbb{R}^n$ is not necessarily also pathwise-connected. Take $A = \{(x, y) \in \mathbb{R}^2 \mid x = 0\}$ and $B = \{(x, y) \in \mathbb{R}^2 \mid x^2+y^2 = 1\}$. Then each of $A$ and $B$ are pathwise-connected, because $A$ is a line and $B$ is the unit circle ($B = \{(\cos{(t)}, \sin{(t)}) \mid 0 \leq t \leq 2\pi\}$), but the intersection $A \cap B$ consists of only the two points $(-1, 0)$ and $(1, 0)$, which is not pathwise-connected in $\mathbb{R}^2$.
+
+\end{proof}
+
+\subsection*{Problem 7 (Problem 6, Page 309)}
+Show that the set $S = \{(x, y) \text{ in } \mathbb{R}^2 \mid \text{either $x$ or $y$ is rational}\}$ is pathwise-connected.
+\begin{proof}
+It suffices to show that any point $(x, y) \in S$ can be brought to the origin with a path contained in the set, as any path from another arbitrary point $(x_1, y_1)$ to the origin can be reversed to get a path from the $(0, 0)$ to $(x_1, y_1)$. This means that we can get a path from $(x, y)$ to $(0, 0)$ to $(x_1, y_1)$. The only restriction is that $x$ and $y$ are not both irrational. To this end, we break this into cases: consider the case where initially $x$ is rational. Then there exists a straight line-segment path from $(x, y)$ to $(x, 0)$ because there is no restriction on $y$. Because $0$ is rational, there is now no restriction on $x$, so that there exists a straight line-segment path from $(x, 0)$ to $(0, 0)$. Now consider the case where initially $y$ is rational. Then there exists a straight line-segment path from $(x, y)$ to $(0, y)$. Because $0$ is rational, there is now no restriction on $y$, so that there exists a straight line-segment path from $(0, y)$ to $(0, 0)$.
+\end{proof}
+
+\end{document}
