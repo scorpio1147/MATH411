@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+\title{HW 7 - MATH411}
+\author{Danesh Sivakumar}
+\date{March 18, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1 (Exercise 2, Page 412)}
+Define 
+\[F(x, y, z) = (xyz, x^2 + yz, 1 + 3x) \qquad \text{for $(x, y, z)$ in $\mathbb{R}^3$}.\]
+Find the derivative matrix of the mapping $F\colon \mathbb{R}^3 \to \mathbb{R}^3$ at the points $(1, 2, 3)$, $(0, 1, 0)$, and $(-1, 4, 0)$.
+\begin{proof}
+Note that the derivative matrix is
+\[ DF(x, y, z) = \begin{bmatrix}
+yz & xz & xy \\
+2x & z & y \\
+3 & 0 & 0 \\
+\end{bmatrix}\]
+With this, we evaluate the following:
+\[ DF(1, 2, 3) = \begin{bmatrix}
+6 & 3 & 2 \\
+2 & 3 & 2 \\
+3 & 0 & 0 \\
+\end{bmatrix}
+\]
+\[ DF(0, 1, 0) = \begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+3 & 0 & 0 \\
+\end{bmatrix}
+\]
+\[ DF(-1, 4, 0) = \begin{bmatrix}
+0 & 0 & -4 \\
+-2 & 0 & 4 \\
+3 & 0 & 0 \\
+\end{bmatrix}
+\]
+
+\end{proof}
+
+
+\subsection*{Problem 2 (Exercise 3, Page 412)}
+Suppose that the mapping $F \colon \mathbb{R}^n \to \mathbb{R}^m$ is continuously differentiable and that the derivative matrix $DF(x)$ at each point $x$ in $\mathbb{R}^n$ has all its entries equal to 0. Prove that the mapping $F\colon \mathbb{R}^n \to \mathbb{R}^m$ is constant; that is, there is some point $c$ in $\mathbb{R}^m$ such that 
+\[ F(x) = c \qquad \text{for every $x$ in $\mathbb{R}^n$}.\]
+\begin{proof} 
+Fix $x$ in $\mathbb{R}^n$ and suppose $y$ is an arbitrary point in $\mathbb{R}^n$. By Theorem 15.29, we have that
+\[ F(y) - F(x) = A(y-x)\]
+where $A$ is the $m \times n$ matrix whose $i$th row is $\nabla F_i(x + \theta_i)$ (where $\theta_i$ is the number in the open interval (0, 1) that satisfies the Mean Value Theorem for each component function). But $\nabla F_i$ is equal to zero for any point in $\mathbb{R}^n$ because all of the derivative matrix's entries are zero for any point in $\mathbb{R}^n$, so that all of the entries in $A$ are zero. This means that $A(y-x) = 0$; thus it follows that $F(y) = F(x)$, so that $F = c$ for some $c \in \mathbb{R}^m$.
+
+\end{proof}
+
+\subsection*{Problem 3 (Exercise 8, Page 413)}
+Suppose that the mapping $F\colon \mathbb{R}^n \to \mathbb{R}^n$ is continuously differentiable. Suppose also that $F(0) = 0$ and that the derivative matrix $DF(0)$ has the property that there is some positive number $c$ such that 
+\[ ||DF(0)h|| \geq c||h|| \qquad \text{for all $h$ in $\mathbb{R}^n$}.\]
+Prove that there is some positive number $r$ such that
+\[ ||F(h)|| \geq c/2||h|| \qquad \text{if $||h|| \leq r$}.\]
+\begin{proof}
+If $h = 0$, then the inequality follows trivially because $||F(0)|| = 0 \geq 0 = c/2||0||$ for any choice of $r$. Now suppose that $h \neq 0$. Because $F$ is continuously differentiable at 0, by Theorem 15.31 we have
+\[ \lim_{h\to 0} \frac{||F(h) - DF(0)h||}{||h||} = 0\]
+Denote this fraction as $g(h)$. Then by definition of functional limits, it follows that for any $\varepsilon > 0$, there exists $r > 0$ such that if $0 < ||h|| < r$ then $|g(h)| < \varepsilon$. In particular, set $\varepsilon = c/2$ and choose $r$ accordingly; then we have by the reverse triangle inequality:
+\[ \frac{\big| ||F(h)|| - ||DF(0)h||\big|}{||h||} \leq \frac{||F(h) - DF(0)h||}{||h||} < c/2\]
+so that
+\[ -c/2 < \frac{||F(h)|| - ||DF(0)h||}{||h||} < c/2\]
+In particular, notice that
+\[ -c/2 < \frac{||F(h)|| - ||DF(0)h||}{||h||} \leq \frac{||F(h)|| - c||h||}{||h||}\]
+Multiplying both sides by $||h||$ and adding $c||h||$ yields
+\[ c/2||h|| < ||F(h)||\]
+which was to be proven.
+\end{proof}
+
+\subsection*{Problem 4 (Exercise 9, Page 413)}
+Suppose that the continuously differentiable mapping $F \colon \mathbb{R}^2 \to \mathbb{R}^2$ is represented in components functions as 
+\[ F(x, y) = (\psi(x, y), \phi(x, y)) \qquad \text{for $(x, y)$ in $\mathbb{R}^2$}.\]
+Define the function $g\colon \mathbb{R}^2 \to \mathbb{R}$ by
+\[ g(x, y) = \frac{1}{2}[(\psi(x, y))^2 + (\phi(x, y))^2] \qquad \text{for $(x, y)$ in $\mathbb{R}^2$}.\]
+\begin{enumerate}[label=\alph*.]
+\item Show that 
+\[ Dg(x_0, y_0) = [DF(x_0, y_0)]^TF(x_0, y_0).\]
+\item Use (a) to prove that if $(x_0, y_0)$ is a minimizer of the function $g \colon \mathbb{R}^2 \to \mathbb{R}$ and the matrix $DF(x_0, y_0)$ is invertible, then
+\[ F(x_0, y_0) = 0.\]
+\end{enumerate}
+\begin{proof}
+\qquad
+\begin{enumerate}[label=\alph*.]
+\item Notice that 
+\[ Dg(x_0, y_0) = \nabla g(x_0, y_0) = \begin{bmatrix}
+\psi(x_0, y_0)\frac{\partial \psi}{\partial x_0} + \phi(x_0, y_0)\frac{\partial \phi}{\partial x_0} \\ \psi(x_0, y_0)\frac{\partial \psi}{\partial y_0} + \phi(x_0, y_0)\frac{\partial \phi}{\partial y_0}
+\end{bmatrix}
+\]
+\[ \psi(x_0, y_0) \begin{bmatrix} \frac{\partial \psi}{\partial x_0} \\ \frac{\partial \psi}{\partial y_0} \end{bmatrix} + \phi(x_0, y_0) \begin{bmatrix} \frac{\partial \phi}{\partial x_0} \\ \frac{\partial \phi}{\partial y_0} \end{bmatrix}\]
+\[ = \begin{bmatrix} \frac{\partial \psi}{\partial x_0} & \frac{\partial \phi}{\partial x_0}\\ \frac{\partial \psi}{\partial y_0} & \frac{\partial \phi}{\partial y_0}\end{bmatrix} \begin{bmatrix} \psi(x_0, y_0) \\ \phi(x_0, y_0) \end{bmatrix} = \begin{bmatrix} \frac{\partial \psi}{\partial x_0} & \frac{\partial \psi}{\partial y_0}\\ \frac{\partial \phi}{\partial x_0} & \frac{\partial \phi}{\partial y_0}\end{bmatrix}^T \begin{bmatrix} \psi(x_0, y_0) \\ \phi(x_0, y_0) \end{bmatrix}\]
+\[ = [DF(x_0, y_0)]^TF(x_0, y_0)\]
+\item Note that because $(x_0, y_0)$ is a minimizer of $g$, it follows that $Dg(x_0, y_0) = 0$; because $DF(x_0, y_0)$ is invertible, it follows that its transpose is also invertible, so that
+\[ F(x_0, y_0) = ([DF(x_0, y_0)]^T)^{-1}Dg(x_0, y_0) = 0\]
+\end{enumerate}
+\end{proof}
+
+\subsection*{Problem 5 (Exercise 2, Page 419)}
+Suppose that the function $h \colon \mathbb{R}^3 \to \mathbb{R}$ is continuously differentiable. Define the function $\eta \colon \mathbb{R}^3 \to \mathbb{R}$ by
+\[ \eta(u, v, w) = (3u + 2v)h(u^2, v^2, uvw) \qquad \text{for $(u, v, w)$ in $\mathbb{R}^3$}.\]
+Find $D_1\eta(u, v, w)$, $D_2\eta(u, v, w)$, and $D_3\eta(u, v, w)$.
+\begin{proof}
+\[ D_1\eta(u, v, w) = 3h(u^2, v^2, uvw) + (3u+2v)\left[\frac{\partial h}{\partial u}(u^2, v^2, uvw)2u + \frac{\partial h}{\partial w}(u^2, v^2, uvw)vw\right]\]
+\[ D_2\eta(u, v, w) = 2h(u^2, v^2, uvw) + (3u+2v)\left[\frac{\partial h}{\partial v}(u^2, v^2, uvw)2v + \frac{\partial h}{\partial w}(u^2, v^2, uvw)uw\right]\]
+\[ D_3\eta(u, v, w) = (3u + 2v)\left[\frac{\partial h}{\partial w}(u^2, v^2, uvw)uv \right]\]
+\end{proof}
+
+\subsection*{Problem 6 (Exercise 5, Page 419)}
+Let $\mathcal{O}$ be an open subset of the plane $\mathbb{R}^2$ and let the mapping $F \colon \mathcal{O} \to \mathbb{R}^2$ be represented by $F(x, y) = (u(x, y), v(x, y))$ for $(x, y)$ in $\mathcal{O}$. Then the mapping $F\colon \mathcal{O} \to \mathbb{R}^2$ is called a \textit{Cauchy-Riemann mapping} provided that each of the functions $u \colon \mathcal{O} \to \mathbb{R}$ and $v\colon \mathcal{O} \to \mathbb{R}$ has continuous second-order partial derivatives and 
+\[ \frac{\partial u}{\partial x}(x, y) = \frac{\partial v}{\partial y}(x, y) \qquad \text{and} \qquad \frac{\partial u}{\partial y}(x, y) = -\frac{\partial v}{\partial x}(x, y) \qquad \text{for all $(x, y)$ in $\mathcal{O}$}.\]
+Prove that if the function $\omega \colon \mathbb{R}^2 \to \mathbb{R}$ is harmonic and the mapping $F \colon \mathcal{O} \to \mathbb{R}^2$ is a Cauchy-Riemann mapping, then the function $ \omega \circ F \colon \mathcal{O} \to \mathbb{R}$ is also harmonic.
+\begin{proof}
+Because $\omega$ is harmonic, it follows that when $\omega$ is a function of $u$ and $v$
+\[ \frac{\partial^2 \omega}{\partial u^2} + \frac{\partial^2 \omega}{\partial v^2} = 0\]
+Because the second partials of $u$ and $v$ are continuous, it follows that the mixed derivatives are equal, so
+\[ \frac{\partial v}{\partial y \partial x} = \frac{\partial v}{\partial x \partial y} \qquad \text{and} \qquad \frac{\partial u}{\partial y \partial x} = \frac{\partial u}{\partial x \partial y}\]
+Thus, using the chain rule and equality from the Cauchy-Riemann relations, we have that:
+\[ \frac{\partial^2 \omega}{\partial x^2} + \frac{\partial^2 \omega}{\partial y^2} = \left[\frac{\partial^2 \omega}{\partial u^2}\left(\frac{\partial u}{\partial x}\right)^2 + \frac{\partial \omega}{\partial u}\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 \omega}{\partial v^2}\left(\frac{\partial v}{\partial x}\right)^2 + \frac{\partial \omega}{\partial v}\frac{\partial^2 v}{\partial x^2}\right]\]
+\[ + \left[\frac{\partial^2 \omega}{\partial u^2}\left(\frac{\partial u}{\partial y}\right)^2 + \frac{\partial \omega}{\partial u}\frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 \omega}{\partial v^2}\left(\frac{\partial v}{\partial y}\right)^2 + \frac{\partial \omega}{\partial v}\frac{\partial^2 v}{\partial y^2}\right]\]
+\[ = \left( \frac{\partial^2 \omega}{\partial u^2} + \frac{\partial^2 \omega}{\partial v^2}\right)\left(\left(\frac{\partial u}{\partial x}\right)^2 + \left(\frac{\partial u}{\partial y}\right)^2\right)\]
+\[ + \frac{\partial \omega}{\partial u} \left(\frac{\partial^2 v}{\partial x\partial y}\right) + \frac{\partial \omega}{\partial u} \left(-\frac{\partial^2 v}{\partial y\partial x}\right) + \frac{\partial \omega}{\partial w} \left(\frac{\partial^2 u}{\partial y\partial x}\right) + \frac{\partial \omega}{\partial w} \left(-\frac{\partial^2 u}{\partial x\partial y}\right) = 0\]
+so that $\omega$ is harmonic in $x$ and $y$, meaning $\omega \circ F$ is harmonic.
+
+\end{proof}
+
+\subsection*{Problem 7 (Exercise 9, Page 420)}
+Let $\mathcal{O} = \{(x, y, z) \text{ in } \mathbb{R}^3 \mid x^2 + y^2 + z^2 > 0\}$ and define the function $u \colon \mathcal{O} \to \mathbb{R}$ by   
+\[ u(p) = \frac{1}{||p||} \qquad \text{for $p$ in $\mathcal{O}$}.\]
+Prove that
+\[ \frac{\partial^2 u}{\partial x^2}(x, y, z) + \frac{\partial^2 u}{\partial y^2}(x, y, z) + \frac{\partial^2 u}{\partial z^2}(x, y, z) = 0 \qquad \text{for every $(x, y, z)$ in $\mathcal{O}$}.\]
+\begin{proof}
+Note that 
+\[ u(x, y, z) = \frac{1}{(x^2 + y^2 + z^2)^{1/2}} \qquad \text{for every $(x, y, z)$ in $\mathcal{O}$}\]
+so that with the chain rule:
+\[\frac{\partial u}{\partial x} = -\frac{x}{(x^2 + y^2 + z^2)^{3/2}} \quad \frac{\partial u}{\partial y} = -\frac{y}{(x^2 + y^2 + z^2)^{3/2}} \quad \frac{\partial u}{\partial z} = -\frac{z}{(x^2 + y^2 + z^2)^{3/2}}\]
+Direct computations with the chain rule show that
+\[ \frac{\partial^2 u}{\partial x^2} = \frac{2x^2-y^2-z^2}{(x^2+y^2+z^2)^{5/2}} \quad \frac{\partial^2 u}{\partial y^2} = \frac{2y^2-x^2-z^2}{(x^2+y^2+z^2)^{5/2}} \quad \frac{\partial^2 u}{\partial z^2} = \frac{2z^2-y^2-x^2}{(x^2+y^2+z^2)^{5/2}}\]
+thus
+\[ \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} = 0\]
+\end{proof}
+
+
+
+\end{document}
