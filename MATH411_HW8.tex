@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+\title{HW 8 - MATH411}
+\author{Danesh Sivakumar}
+\date{March 29, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1 (Exercise 2, Page 427)}
+Define the function $f \colon \mathbb{R} \to \mathbb{R}$ by
+\[ f(x) = x^3 + x + \cos{x} \qquad \text{for $x$ in $\mathbb{R}$}\]
+At what points $x$ in $\mathbb{R}$ does the Inverse Function Theorem apply? Prove that the function $f \colon \mathbb{R} \to \mathbb{R}$ is one-to-one and onto.
+\begin{proof}
+First, we will prove that $f'(x) = 3x^2 + 1 - \sin{x}$ is strictly positive and thus $f('x) > 0$ for all $x$ in $\mathbb{R}$. \\
+Case 1: $x = 0$ \\
+$f'(x) = 3(0)^2 + 1 - \sin{0} = 1 > 0$ \\
+Case 2: $x \neq 0$ \\
+$f'(x) = 3x^2 + 1 - \sin{x} \geq 3x^2 > 0$ \\
+Note that $f'(x)$ is continuous on $\mathbb{R}$ because it is the sum and product of continuous functions, and thus $f(x)$ is continuously differentiable. This means that the Inverse Function Theorem applies for all $x$ in $\mathbb{R}$. \\
+We claim $f \colon \mathbb{R} \to \mathbb{R}$ is one-to-one. To this end, let $x$ and $y$ in $\mathbb{R}$ be arbitrary; without loss of generality let $x < y$. By the Mean Value Theorem, for some $c \in (x, y)$:
+\[\frac{f(y) - f(x)}{y - x} = f'(c) > 0 \]
+which implies that $f$ is strictly increasing and thus one-to-one. \\
+We claim $f \colon \mathbb{R} \to \mathbb{R}$ is onto. By the Intermediate Value Theorem, $f(\mathbb{R})$ is an interval. We claim that $f(\mathbb{R}) = \mathbb{R}$. It suffices to show that the image of $\mathbb{R}$ under $f$ is unbounded in both directions. We claim
+\[ (1) \lim_{x \to \infty} f(x) = \infty \qquad \text{and} \qquad (2) \lim_{x \to -\infty} f(x) = -\infty\]
+To prove (1), let $M > 0$ be arbitrary and take $N = \max{\{\sqrt[3]{M}, 1\}}$. Then for all $x > N$
+\[ f(x) = x^3 + x + \cos{x} > x^3 > M\] 
+To prove (2), let $M > 0$ be arbitrary and take $N = \max{\{\sqrt[3]{M}, 1\}}$. Then for all $x < -N$
+\[ f(x) = x^3 + x + \cos{x} < x^3 < -M\]
+so that $f(\mathbb{R}) = \mathbb{R}$; thus $f$ is onto.
+\end{proof}
+
+
+\subsection*{Problem 2 (Exercise 5, Page 428)}
+Suppose that the continuously differentiable function $f \colon \mathbb{R} \to \mathbb{R}$ has the property that there is some positive number c such that 
+\[ f'(x) \geq c \qquad \text{for every $x$ in $\mathbb{R}$}\]
+Show that the function $f \colon \mathbb{R} \to \mathbb{R}$ is both one-to-one and onto.
+\begin{proof} 
+We claim $f \colon \mathbb{R} \to \mathbb{R}$ is one-to-one. To this end, let $x$ and $y$ in $\mathbb{R}$ be arbitrary; without loss of generality let $x < y$. By the Mean Value Theorem, for some $d \in (x, y)$:
+\[\frac{f(y) - f(x)}{y - x} = f'(d) \geq c > 0 \]
+which implies that $f$ is strictly increasing and thus one-to-one. \\
+We claim $f \colon \mathbb{R} \to \mathbb{R}$ is onto. By the Intermediate Value Theorem, $f(\mathbb{R})$ is an interval. We claim that $f(\mathbb{R}) = \mathbb{R}$. It suffices to show that the image of $\mathbb{R}$ under $f$ is unbounded in both directions. We claim
+\[ (1) \lim_{x \to \infty} f(x) = \infty \qquad \text{and} \qquad (2) \lim_{x \to -\infty} f(x) = -\infty\]
+Let $x \in \mathbb{R}$ be arbitrary. \\
+Case 1: $x > 0$ \\
+By the Mean Value Theorem, for some $x_0 \in (0, x)$
+\[ \frac{f(x) - f(0)}{x - 0} = f'(x_0) \geq c \implies f(x) \geq cx + f(0)\]
+This argument proves (1). \\
+Case 2: $x < 0$ \\
+By the Mean Value Theorem, for some $x_0 \in (x, 0)$
+\[ \frac{f(x) - f(0)}{x - 0} = f'(x_0) \geq c \implies f(x) \leq cx + f(0)\]
+This argument proves (2); thus $f$ is onto.
+\end{proof}
+
+\subsection*{Problem 3 (Exercise 8, Page 428)}
+For each of the following mappings $\textbf{F} \colon \mathbb{R}^2 \to \mathbb{R}^2$, apply the Inverse Function Theorem at the point $(x_0, y_0) = (0, 0)$ and calculate the partial derivatives of the components of the inverse mapping at the point $(u_0, v_0) = \textbf{F}(0, 0)$:
+\begin{enumerate}[label = \alph*.]
+    \item $\textbf{F}(x, y) = (x+x^2+e^{x^2y^2}, -x+y+\sin(xy)) \text{ for $(x, y)$ in $\mathbb{R}^2$}$
+    \item $\textbf{F}(x, y) = (e^{x+y}, e^{x-y}) \text{ for $(x, y)$ in $\mathbb{R}^2$}$
+\end{enumerate}
+\begin{proof}
+Each of the mappings is continuously differentiable because each of the components is continuously differentiable:
+\begin{enumerate}[label = \alph*.]
+    \item $\textbf{DF}(x, y) = \begin{bmatrix}
+1 + 2x + 2xy^2e^{x^2y^2} & 2yx^2e^{x^2y^2} \\
+-1 + y\cos(xy) & 1 + x\cos(xy) \\
+\end{bmatrix}$ \\
+$J(0, 0) = \text{det}\textbf{DF}(0, 0) = 1 \neq 0$, so the Inverse Function Theorem applies and the partial derivatives of the components of the inverse mapping $\textbf{F}^{-1} = (g(u, v), h(u, v))$ are the entries of the inverse matrix, namely:
+\[ \frac{\partial g}{\partial u}(u_0, v_0) = 1 \qquad \frac{\partial g}{\partial v}(u_0, v_0) = 0\]
+\[ \frac{\partial h}{\partial u}(u_0, v_0) = 1 \qquad \frac{\partial h}{\partial v}(u_0, v_0) = 1\]
+
+    \item $\textbf{DF}(x, y) = \begin{bmatrix}
+e^{x+y} & e^{x+y} \\
+e^{x-y} & -e^{x-y} \\
+\end{bmatrix}$ \\
+$J(0, 0) = \text{det}\textbf{DF}(0, 0) = -2 \neq 0$, so the Inverse Function Theorem applies and the partial derivatives of the components of the inverse mapping $\textbf{F}^{-1} = (g(u, v), h(u, v))$ are the entries of the inverse matrix, namely:
+\[ \frac{\partial g}{\partial u}(u_0, v_0) = \frac{1}{2} \qquad \frac{\partial g}{\partial v}(u_0, v_0) = \frac{1}{2}\]
+\[ \frac{\partial h}{\partial u}(u_0, v_0) = \frac{1}{2} \qquad \frac{\partial h}{\partial v}(u_0, v_0) = -\frac{1}{2}\]
+
+\[ \]
+\end{enumerate}
+\end{proof}
+
+\subsection*{Problem 4 (Exercise 11, Page 428)}
+For a pair of real numbers $a$ and $b$, consider the system of nonlinear equations 
+\[ x + x^2\cos{y} + xye^{x^3y^2} = a\]
+\[ y + x^5 + y^3 - x^2\cos(xy) = b\]
+Use the Inverse Function Theorem to show that there is some positive number $r$ such that if $a^2 + b^2 < r^2$, then this system of equations has at least one solution.
+\begin{proof}
+Note that $(0, 0)$ is a solution to the system of equations when $a, b = 0$. Define the mapping $\textbf{F} \colon \mathbb{R}^2 \to \mathbb{R}^2$ by $\textbf{F}(x, y) = (x + x^2\cos{y} + xye^{x^3y^2}, y + x^5 + y^3 - x^2\cos(xy))$. The mapping is clearly continuously differentiable as its component functions are continuously differentiable; note that
+\[ \textbf{DF}(x, y) = \begin{bmatrix}
+1 + 2x\cos{y} + ye^{x^2y^2} + 3x^3y^3e^{x^3y^2} & -x^2\sin{y} + xe^{x^3y^2} + 2x^4y^2e^{x^3y^2} \\
+5x^4 - 2x\cos{xy} + yx^2\sin{xy} & 1 + 3y^2 - x^3\sin{xy} \\
+\end{bmatrix} \]
+Because $\textbf{DF}(0, 0) = \begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+\end{bmatrix}$ is invertible, the Inverse Function Theorem applies. This means that there is a neighborhood $U$ of $(0, 0)$ and a neighborhood $V$ of $(0, 0)$ such that $F \colon U \to V$ is bijective. Because $V$ is open, there exists $r > 0$ such that $B_r(0, 0) \subset V$. Thus, if $a^2 + b^2 < r^2$, then $(a, b) \in B_r(0, 0)$. Thus $textbf{F}^{-1}(a, b)$ is a solution to the system of equations. 
+\end{proof}
+
+\subsection*{Problem 5 (Exercise 13, Page 429)}
+Let the continuously differentiable mapping $\textbf{F} \colon \mathbb{R}^2 \to \mathbb{R}^2$ be represented in component functions by $\textbf{F}(x, y) = (\psi(x, y), \varphi(x, y))$ for $(x, y)$ in $\mathbb{R}^2$. Suppose that the point $(x_0, y_0)$ in $\mathbb{R}^2$ has the property that
+\[ \psi(x, y) \geq \psi(x_0, y_0) \qquad \text{for all $(x, y)$ in $\mathbb{R}^2$}\]
+\begin{enumerate}[label = \alph*.]
+    \item Explain analytically why the hypotheses of the Inverse Function Theorem cannot hold at $(x_0, y_0)$.
+    \item Explain geometrically why the conclusion of the Inverse Function Theorem cannot hold at $(x_0, y_0)$.
+\end{enumerate}
+\begin{proof}
+\qquad
+\begin{enumerate}[label = \alph*.]
+    \item The fact that $\psi(x, y) \geq \psi(x_0, y_0)$ for all $(x, y)$ in $\mathbb{R}^2$ implies that $(x_0, y_0)$ is a minimizer for $\psi \colon \mathbb{R}^2 \to \mathbb{R}$. This means that $\nabla \psi(x_0, y_0) = (0, 0)$, so that 
+    \[ \textbf{DF}(x_0, y_0) = \begin{bmatrix}
+    0 & 0 \\
+    \frac{\partial \phi}{\partial x}(x_0, y_0) & \frac{\partial \phi}{\partial y}(x_0, y_0) \\ 
+    \end{bmatrix}\]
+    and
+    \[J(x_0, y_0) = \text{det}\textbf{DF}(x_0, y_0) = 0(\frac{\partial \phi}{\partial y}(x_0, y_0)) - 0(\frac{\partial \phi}{\partial x}(x_0, y_0)) = 0\]
+    The determinant of the derivative matrix is equal to 0 at the point $(x_0, y_0)$, meaning that $\textbf{DF}(x_0, y_0)$ is not invertible, so the hypotheses of the Inverse Function Theorem cannot hold at $(x_0, y_0)$.
+    \item The point $\textbf{F}(x_0, y_0)$ is a boundary point of the image of $F$ because every open ball will contain a point inside and outside the image. This implies that for any neighborhood $V$ of $\textbf{F}(x_0, y_0)$, there cannot exist a neighborhood $U$ of $(x_0, y_0)$ such that $\textbf{F} \colon U \to V$ is a bijective mapping, because it cannot be onto. Thus the conclusion of the Inverse Function Theorem cannot hold at the point $(x_0, y_0)$. 
+\end{enumerate}
+\end{proof}
+
+
+\end{document}
