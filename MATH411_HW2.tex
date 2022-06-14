@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{gensymb}
+
+\title{HW2 - MATH411}
+\author{Danesh Sivakumar}
+\date{January 27, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1}
+
+Determine which of the following subsets of $\mathbb{R}$ are open in $\mathbb{R}$, closed in $\mathbb{R}$, or neither open nor closed in $\mathbb{R}$. Justify your conclusions:
+\begin{enumerate}[label=(\alph*)]
+\item $A = \mathbb{Q}$, the set of rational numbers
+\item $A = \{u \in \mathbb{R} \mid u^2 > 4\}$
+\end{enumerate}
+Determine which of the following subsets of $\mathbb{R}^2$ are open in $\mathbb{R}^2$, closed in $\mathbb{R}^2$, or neither open nor closed in $\mathbb{R}^2$. Justify your conclusions:
+\begin{enumerate}[label=(\alph*)]
+\item $A = \{u = (x, y) \mid x^2+y^2 = 1\}$
+\item $A = \{u = (x, y) \mid x \text{ is rational}\}$ 
+\end{enumerate}
+
+\begin{proof}
+For the sets in $\mathbb{R}$:
+\begin{enumerate}[label=(\alph*)]
+\item $A$ is neither open nor closed in $\mathbb{R}$. To prove that it is not open, note that the interior of $A$ is empty, as any open ball centered at $u \in A$ contains irrationals by the density of $\mathbb{Q}$ in $\mathbb{R}$, so int $A = \varnothing \neq A$, so $A$ is not open. To prove that it is not closed, consider the sequence $\{u_k\} = (1+\frac{1}{k})^k$. Each $u_k \in A$ but $\{u_k\} \to e \notin A$.
+\item $A$ is open. Trivially, $\text{int } A \subseteq A$. For any point $u \in A$, we have that $|u| > 2$, so that $|u| - 2 > 0$. Set $r = \frac{|u|-2}{2}$, then it follows that $B_r(u) \subseteq A$, so that $A \subseteq \text{int } A$; thus $\text{int } A = A$, so $A$ is open in $\mathbb{R}$. $A$ is not closed in $R$; consider $\{u_k\} = (2+\frac{1}{k})^2$. All of the $u_k \in A$, but $\{u_k\} \to 4 \notin A$.
+\end{enumerate}
+For the sets in $\mathbb{R}^2$:
+For the sets in $\mathbb{R}$:
+\begin{enumerate}[label=(\alph*)]
+\item $A$ is closed. To prove this, suppose that $\{u_k\} \in A$ converges to $u$. By a theorem in class, it follows that $||u_k|| \to ||u||$, but $||u_k|| = 1$ for all $k$, which means that $||u|| = 1$. This implies that $u$ is on the unit circle, so that $u \in A$, showing that $A$ is closed. $A$ is not open, because any open ball will contain points outside of $A$.  
+\item $A$ is neither open nor closed by the same reasoning of (a) in $\mathbb{R}$; since the $x$- component of any $u \in A$ is neither closed nor open in $\mathbb{R}$, component-wise convergence of sequences implies that there exists $\{u_k\} \in A$ such that $\{u_k\} \to u \notin A$, so that $A$ is not closed. Furthermore, any open ball centered at $u \in A$ contains an irrational $x$-component, so $A$ is not open.  
+\end{enumerate}
+\end{proof}
+
+
+\subsection*{Problem 2}
+
+Let $A$ be a subset of $\mathbb{R}^n$ and let $w$ be a point in $\mathbb{R}^n$. The \textit{translate} of $A$ by $w$ is denoted by $w + A$ and is defined by 
+
+\[ w + A = \{w + u \mid u \text{ in } A\}\]
+
+\begin{enumerate}[label=(\alph*)]
+\item Show that $A$ is open if and only if $w+A$ is open.
+\item Show that $A$ is closed if and only if $w+A$ is closed.
+\end{enumerate}
+
+\begin{proof}
+
+\begin{enumerate}[label=(\alph*)]
+\item If A is open, then for any $u \in A$, it follows that $B_r(u) \in A$, so that $w + B_r(u) \in w + A$. We must show that $w + B_r(u) = B_r(w+u)$. To this end, note that:
+\[x \in w + B_r(u) \iff x-w \in B_r(u) \iff ||(x-w)-u|| < r \]
+\[\iff ||x-(w+u)|| < r \iff x \in B_r(w+u)\]
+so that $A$ open $\iff$ $w + A$ open.
+
+\item Note that $A$ closed $\iff$ $A^c$ open $\iff$ $w + A^c$ open $\iff$ $(w + A)^c$ open $\iff$ $w + A$ closed. Additionally, if $\{u_k\} \in A$ converges to $u \in A$, it follows that $\{w + u_k\} = w + \{u_k\} = w + u \in w + A$ (because $w$ is fixed); a similar argument holds in the reverse direction, because of the fact that $w$ is fixed.
+\end{enumerate}
+
+\end{proof}
+
+\subsection*{Problem 3}
+Let $A$ and $B$ be subsets of $\mathbb{R}^n$ with $A \subseteq B$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that int $A$ $\subseteq$ int $B$.
+\item Is it necessarily true that bd $A$ $\subseteq$ bd $B$?
+\end{enumerate}
+
+
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+\item Let $u \in \text{int }A$ be arbitrary. Then for some $r > 0$ there exists an open ball such that $u \in B_r(u) \subseteq A $. But $A \subseteq B$, so that in particular $B_r(u) \subseteq B$, meaning that $u \in \text{int } B$, which implies that $\text{int }A \subseteq \text{int }B$
+\item No. Consider two concentric closed circles in $\mathbb{R}^2$; the intersection of the boundaries is empty, so neither can be contained in the other. 
+\end{enumerate}
+\end{proof}
+
+\subsection*{Problem 4}
+
+For a subset $A$ is $\mathbb{R}^n$, the \textit{closure} of $A$, denoted by cl $A$, is defined by
+
+\[ \text{cl } A = \text{int } A \cup \text{bd } A\]
+
+Prove that $A \subseteq \text{cl } A$ and that $A = \text{cl } A$ if and only if $A$ is closed in $\mathbb{R}^n$.
+
+\begin{proof}
+Let $u \in A$ be arbitrary. Consider an open ball of radius $r>0$ centered at $u$. There are two cases: (1) $B_r(u) \subseteq A$ or (2) $B_r(u)$ is not contained in $A$. For (1), it follows that $u \in \text{int } A$, so that in particular $u \in \text{int } A \cup \text{bd } A$. For (2), it follows that $B_r(u)$ contains a point in $A$ (namely $u$) and a point not in $A$, so that $u \in \text{bd } A$ and in particular $u \in \text{int } A \cup \text{bd } A$. Thus, in either case, $u \in \text{cl } A$, so that $A \subseteq \text{cl } A$. \\ 
+Suppose that $A = \text{cl } A$. In particular, $\text{bd} A \subseteq A$, so that $A$ is closed in $\mathbb{R}^n$. \\
+Suppose that $A$ is closed in $\mathbb{R}^n$. We must show $\text{bd} A \subseteq A$. Let $u \in \text{bd } A$. Then there exists a sequence in A such that $\{u_k\} \in B_{1/k}(u)$, which clearly converges to $u \in A$ because $A$ is closed. 
+
+
+ 
+
+\end{proof}
+
+\subsection*{Problem 5}
+Fix a point $V$ in $\mathbb{R}^n$ and define the function $f \colon \mathbb{R}^n \to \mathbb{R}$ by
+\[ f(u) = \langle u, v \rangle \qquad \text{for } u \in \mathbb{R}^n\]
+Prove that the function $f \colon \mathbb{R}^n \to \mathbb{R}$ is continuous.
+
+\begin{proof}
+
+The projection functions $p_i$ are continuous, so that in particular $p_i(u)$ and $p_i(v)$ are continuous for $i \in \{1, \cdots, n\}$. Use this fact to rewrite $f$ as:
+\[ f(u) = \langle u, v \rangle = \langle (p_1(u), \cdots, p_n(u)), (p_1(v), \cdots, p_n(v)) \rangle \]
+\[ = p_1(u)p_1(v) + \cdots + p_n(u)p_n(v) \]
+
+By the continuity of sums and products of continuous functions, the final result is continuous; thus $f$ is continuous.
+
+\end{proof}
+
+\subsection*{Problem 6}
+Suppose that the function $f \colon \mathbb{R}^n \to \mathbb{R}$ is continuous and that $f(u) > 0$ if the point $u$ in $\mathbb{R}^n$ has at least one rational component. Prove that $f(u) \geq 0$ for all points $u$ in $\mathbb{R}^n$.
+
+\begin{proof}
+
+For every $u \in \mathbb{R}^n$ with a rational component, we have that $f(u) > 0$. In particular, let $u = (u_1, \cdots, u_n) \in \mathbb{R}^n$. Let $\varepsilon > 0$ be arbitrary. Then, because $f$ is continuous, there exists a $\delta > 0$ such that $||u - v|| < \delta \implies ||f(u) - f(v)|| < \varepsilon$. By the density of $\mathbb{Q}$ in $\mathbb{R}$, it follows that there exists $v_1$ such that $u_1 < v_1 < u_1 + \delta$, where $0 < v_1 - u_1 < \delta$. Then, constructing $v$ to be the same as $u$ except for the first component, we have that:
+
+\[ ||u-v|| = \sqrt{(u-v_1)^2 + \cdots + (u - v_n)^2} = \sqrt{(u-v_1)^2 + \cdots + 0} = ||u-v_1|| < \delta\]
+
+Putting this together yields:
+
+\[ f(u) - f(v) < \varepsilon \implies f(u) > f(v) - epsilon \implies f(u) \geq 0\]
+
+\end{proof}
+
+\end{document}
