@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{textcomp, gensymb}
+
+\title{HW 6 - MATH411}
+\author{Danesh Sivakumar}
+\date{March 7, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1 (Exercise 3, Page 370)}
+Suppose that the functions $f \colon \mathbb{R}^n \to \mathbb{R}$ and $g \colon \mathbb{R}^n \to \mathbb{R}$ are continuously differentiable. Find a formula for $\nabla (g \circ f)(x)$ in terms of $\nabla f(x)$ and $g'(f(x))$.
+\begin{proof} 
+By definition of the partial derivative and the mean value theorem, we have:
+\[ \frac{\partial}{\partial x_i} (g \circ f) (x) = \lim_{t \to 0}\frac{g(f(x + te_i)) - g(f(x))}{t} = \lim_{t \to 0}g'(c_t) \frac{f(x+te_i) - f(x)}{t}\]
+where $c_t$ is a point strictly between $f(x)$ and $f(x+te_i)$. Because $g$ is continuously differentiable, we have $\lim_{t \to 0}g'(c_t) = g'(f(x))$ and we also have $\lim_{t \to 0}c_t = f(x)$. Notice further that because $f$ is also continuously differentiable, we have that: 
+\[ \frac{\partial f}{\partial x_i} = \lim_{t \to 0} \frac{f(x+te_i) - f(x)}{t}\]
+By rules for products of limits, we have that for each $i$:
+\[ \frac{\partial}{\partial x_i} (g \circ f) (x) = g'(f(x)) \frac{\partial f}{\partial x_i}\]
+which implies that 
+\[ \nabla (g \circ f)(x) = g'(f(x)) \cdot \nabla f(x)\]
+\end{proof}
+
+\subsection*{Problem 2 (Exercise 6, Page 370)}
+Define the function $f \colon \mathbb{R}^3 \to \mathbb{R}$ by 
+\[ f(x, y, z) = xyz + x^2 + y^2 \qquad \text{for } (x, y, z) \text{ in } \mathbb{R}^3.\]
+The Mean Value Theorem implies that there is a number $\theta$ with $0 < \theta < 1$ for which
+\[ f(1, 1, 1) - f(0, 0, 0) = \frac{\partial f}{\partial x}(\theta, \theta, \theta) + \frac{\partial f}{\partial y}(\theta, \theta, \theta) + \frac{\partial f}{\partial z}(\theta, \theta, \theta).\]
+Find such a value of $\theta$.
+\begin{proof} 
+Notice that $f(1, 1, 1) = 3$ and $f(0, 0, 0) = 0$. Also notice that $\frac{\partial f}{\partial x} = yz + 2x$, $\frac{\partial f}{\partial y} = xz + 2y$, and $\frac{\partial f}{\partial z} = xy$. Thus our problem reduces to solving the following:
+\[ 3 = (\theta^2 + 2\theta) + (\theta^2 + 2\theta) + (\theta^2) = 3\theta^2 + 4\theta \implies 3 \theta^3 + 4\theta - 3 = 0\]
+Solving this with the quadratic formula and taking the solution in the interval $(0, 1)$ yields $\theta = -\frac{2}{3} + \frac{\sqrt{13}}{3}$.
+\end{proof}
+
+\subsection*{Problem 3 (Exercise 7, Page 371)}
+Suppose that the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ has first-order partial derivatives and that $f(0, 0) = 1$, while
+\[ \frac{\partial f}{\partial x}(x, y) = 2 \qquad \text{and} \qquad \frac{\partial f}{\partial y}(x, y) = 3 \qquad \text{for all $(x, y)$ in $\mathbb{R}^2$}\]
+Prove that
+\[ f(x, y) = 1 + 2x + 3y \qquad \text{for all $(x, y)$ in $\mathbb{R}^2$}\]
+\begin{proof}
+We proceed by showing that if $g$ is another function that satisfies the conditions, then $g$ must necessarily be $f$. To show this, we prove that if a function's gradient is zero, then the function is constant, and we proceed by induction. The base case is the identity criterion from analysis of a single variable. Now assume all functions $g \colon \mathbb{R}^n \to \mathbb{R}$ that have first-order partial derivatives and a zero gradient are constant. We will show that all functions $h \colon \mathbb{R}^{n+1} \to \mathbb{R}$ that have first-order partial derivatives and a zero gradient are constant as well. Set $g_x \colon \mathbb{R}^n \to \mathbb{R}$ to be the function from $(v_1, \cdots, v_n)$ to $f(v_1, \cdots, v_n, x)$. Notice that 
+\[ \nabla g_x = \left(\frac{\partial f}{\partial x_1}, \cdots, \frac{\partial f}{\partial x_n}\right) = 0\]
+Thus by the inductive hypothesis, there exists $c_x \in \mathbb{R}$ such that $g(v) = c_x$ for all $v \in \mathbb{R}^n$. Define a mapping $i$ such that $f(x_1, \cdots, x_{n+1} = i(x_{n+1})$. Then we have that $i'(x) = \frac{\partial f}{\partial x_{n+1}} = 0$, so that $i$ and thus $f$ are not constant. \\
+Now suppose $g$ is a function that satisfies the conditions as well. Notice that $\nabla g = \nabla f$, so that for a function $h = f - g$ it follows that $\nabla h = 0$, so that $h$ is constant. Notice further that $h(0, 0) = f(0, 0) - g(0, 0) = 0$, so that $f = g$, and thus $f(x, y) = 1 + 2x + 3y$ is the only possible function.
+\end{proof}
+
+\subsection*{Problem 4 (Exercise 9, Page 371)}
+Define the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ by 
+\[ f(x, y) = \begin{cases}
+          (x/|y|)\sqrt{x^2+y^2} \quad &\text{if $y \neq 0$} \\
+          0 \quad &\text{if $y = 0$}\\
+          \end{cases}\]
+\begin{enumerate}[label=\alph*.]
+    \item Prove that the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ is not continuous at the point $(0, 0)$.
+    \item Prove that the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ has directional derivatives in all directions at the point $(0, 0)$.
+    \item Prove that if $c$ is any number, then there is a vector $p$ of norm 1 such that 
+    \[ \frac{\partial f}{\partial p}(0, 0) = c.\]
+    \item Does (c) contradict Corollary 13.18?
+\end{enumerate}
+\begin{proof}
+\qquad
+\begin{enumerate}[label=\alph*.]
+\item Notice that the sequence $\{(1/k, 1/k^2)\} \to (0, 0)$ but $\{f(1/k, 1/k^2)\} = k\sqrt{1+k^2}$ which does not converge.
+\item Let $p \in \mathbb{R}^2$ be arbitrary. Notice that $f$ is homogeneous; that is that $f(tx, ty) = tf(x, y)$ for nonzero $t$. This means that
+\[ \frac{\partial f}{\partial p}(0, 0) \lim_{t \to 0} \frac{f(tp)}{t} = \lim_{t \to 0} \frac{tf(p)}{t} = \lim_{t \to 0} f(p) = f(p)\]
+so that the directional derivative exists at the origin for any vector in $\mathbb{R}^2$.
+\item Let $u = (c, 1)$ with $c \in \mathbb{R}$. Let $p = u/||u||$, so that $p$ is a unit vector. Then we have that
+\[ \frac{\partial f}{\partial p}(0, 0) = f(p) = f(u/||u||) = \frac{f(u)}{||u||} = \frac{c||u||}{||u||} = c\]
+\item Part (c) does not contradict Corollary 13.18 because $f$ is not continuous.
+\end{enumerate}
+
+\end{proof}
+
+\subsection*{Problem 5 (Exercise 5, Page 378}
+Define 
+\[ f(x, y) = e^{\sin(x-y)} \qquad \text{for $(x, y)$ in $\mathbb{R}^2$}\]
+Find the affine function that is a first-order approximation to the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ at the point $(0, 0)$.
+\begin{proof}
+Because $f$ is continuously differentiable, we can take $f(0, 0) = 1$ and find the gradient as follows: 
+\[ \nabla f(x, y) = \left( e^{\sin(x-y)}\cos(x-y), -e^{\sin(x-y)}cos(x-y)\right)\]
+so that $\nabla f (0, 0) = (-1, 1)$; with Corollary 14.4 we deduce that the first order approximation is the function $g(x, y) = 1 + x - y$.
+\end{proof}
+
+\subsection*{Problem 6 (Exercise 17, Page 379)}
+Define 
+\[ f(x, y) = \begin{cases}
+          \sin(y^2/x) \cdot \sqrt{x^2+y^2} \quad &\text{if $x \neq 0$} \\
+          0 \quad &\text{if $x = 0$}\\
+          \end{cases}\]
+\begin{enumerate}[label=\alph*.]
+    \item Show that the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ is continuous at the point $(0, 0)$ and has directional derivatives in every direction at $(0, 0)$. 
+    \item Show that there is no plane that is tangent to the graph of $f \colon \mathbb{R}^2 \to \mathbb{R}$ at the point $(0, 0, f(0, 0)).$
+\end{enumerate}
+\begin{proof}
+\qquad 
+\begin{enumerate}[label=\alph*.]
+\item Observe that 
+\[ 0 \leq |f(x, y)| \leq ||(x, y)|| \]
+for all $(x, y) \in \mathbb{R}^2$, so that by the squeeze theorem it follows that the limit $\lim_{(x, y) \to (0, 0)}f(x, y) = 0 = f(0, 0)$ which means $f$ is continuous at $(0, 0)$. \\
+Now take $p = (x, y) \in \mathbb{R}^2$; note that for $y = 0$ it follows that $f(tp) = 0$, so that 
+\[ \frac{\partial f}{\partial p}(0, 0) = \lim_{t \to 0}\frac{f(tp)}{t} = 0\]
+If $y \neq 0$, let $c = y^2/x$ so that $f(tp)/t = sin(tc)$. This is continuous and because $\lim_{t \to 0}tc = 0$, meaning:
+\[ \frac{\partial f}{\partial p}(0, ) = \lim_{t \to 0} f(tp)/t = sin(0) = 0\]
+which means that directional derivatives of $f$ exist in every direction at (0, 0). 
+\item Suppose for the sake of contradiction that there is a tangent plane at $(0, 0, f(0, 0))$. Then there exists $\psi \colon \mathbb{R}^2 \to \mathbb{R}$ of the form $\psi(x, y) = a + bx + cy$ for $(x, y) \in \mathbb{R}^2$ such that 
+\[ \lim_{(x, y) \to (0, 0)} \frac{f(x, y) - \psi(x, y)}{||(x, y)||}\]
+Note that $a = f(0, 0) = 0$, $b = 0$, and $c = 0$, so that
+\[ \lim_{(x, y) \to (0, 0)} \frac{f(x, y) - \psi(x, y)}{||(x, y)||} = \lim_{(x, y) \to (0, 0)} \frac{f(x, y)}{||(x, y)||} = \lim_{(x, y) \to (0, 0)} sin(y^2/x)\]
+However, take $\{1/k^2, 1/k\} \to (0, 0)$ but $\{f(1/k^2, 1/k)\} \to \sin(1) \neq 0$, which is a contradiction. 
+\end{enumerate}
+\end{proof}
+
+\subsection*{Problem 7 (Exercise 18, Page 380)}
+Suppose that the continuous function $f \colon \mathbb{R}^2 \to \mathbb{R}$ has a tangent plane at the point $(x_0, y_0, f(x_0, y_0))$. Prove that the function $f \colon \mathbb{R}^2 \to \mathbb{R}$ has directional derivatives in all directions at the point $(x_0, y_0)$.
+\begin{proof}
+Because the tangent plane exists, we know there exists a function $\psi \colon \mathbb{R}^2 \to \mathbb{R}$ such that $\psi(x, y) = a + b(x-x_0) + c(y-y_0)$, and
+\[ \lim_{(x, y) \to (x_0, y_0)} \frac{f(x, y) - \psi(x, y)}{||(x, y) - (x_0, y_0)||} = 0\]
+so that
+\[ \lim_{(x, y) \to (x_0, y_0)} f(x, y) - \psi(x, y) = 0\]
+The continuity of $f$ and $\psi$ implies that $f(x_0, y_0) - \psi(x_0, y_0) = f(x_0, y_0) - a = 0$ which means $a = f(x_0, y_0)$. For any $p \in \mathbb{R}^2$, any sequence $\{t_k\} \to 0$ will have $\{t_kp\} \to 0$ which  means that $\{(x_0, y_0) + t_kp\} \to (x_0, y_0)$. This means that 
+\[ ||p|| \lim_{k \to \infty} \frac{f((x_0, y_0) + t_kp) - \psi((x_0, y_0) + t_kp)}{||(x_0, y_0) + t_kp - (x_0, y_0)||} = \lim_{k \to \infty} \frac{f((x_0, y_0) + t_kp) - \psi((x_0, y_0) + t_kp)}{t_k} = 0\]
+Notice that 
+\[ \lim_{k \to \infty} \frac{f((x_0, y_0) + t_kp) - f(x_0, y_0)}{t_k} = \lim_{k \to \infty} \frac{\langle (b, c), t_kp\rangle}{t_k} = \langle (b, c), p\rangle\]
+This implies that
+\[ \frac{\partial f}{\partial p}(x_0, y_0) =  \langle (b, c), p\rangle\]
+so that $f$ has directional derivatives in every direction at $(x_0, y_0)$.
+\end{proof}
+
+\end{document}
