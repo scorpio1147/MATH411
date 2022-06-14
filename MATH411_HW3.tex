@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+\title{HW 3 - MATH411}
+\author{Danesh Sivakumar}
+\date{February 12, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1}
+
+Show that the set $\{u \text{ in } \mathbb{R}^n \mid u_n > 0\}$ is open in $\mathbb{R}^n$.
+
+\begin{proof}
+
+Define $f(u) = p_n(u) = u_n$, where $p_n$ is the $n$th component projection. By Proposition 11.1, the projection function is continuous, so that the set $\{u \text{ in } \mathbb{R}^n \mid f(u) > 0\}$ is open in $\mathbb{R}^n$ by Corollary 11.13.
+
+\end{proof}
+
+
+\subsection*{Problem 2}
+
+Let $\mathcal{O}$ be an open subset of $\mathbb{R}^n$ and suppose that the function $f \colon \mathcal{O} \to \mathbb{R}$ is continuous. Suppose that $u$ is a point in $\mathcal{O}$ at which $f(u) > 0$. Prove that there is an open ball $B$ about $u$ such that $f(v) > f(u)/2$ for all $v$ in $B$.
+
+\begin{proof}
+Because $f$ is continuous on $\mathcal{O}$, letting $\varepsilon = f(u)/2$, it follows that $||f(v) - f(u)|| < f(u)/2$ if $||v-u|| < \delta_1$. Because $\mathcal{O}$ is open in $\mathbb{R}^n$, it follows that for some $r>0$, there exists $B_r(u) \subseteq \mathcal{O}$. Take $\delta = \min{\{\delta_1, r\}}$, then it follows that if $||v-u|| < \delta$ (or equivalently, $v \in B_\delta(u)$) then $||f(v) - f(u)|| < \epsilon = f(u)/2$. Rewriting this, we have $-f(u)/2 < f(v) - f(u) < f(u)/2$; adding $f(u)$ to both sides of the left inequality shows that for all $v \in B_\delta(u), f(v) > f(u)/2$, which was to be shown.
+\end{proof}
+
+\subsection*{Problem 3}
+Let $A$ be a subset of $\mathbb{R}^n$. The \textit{characteristic function} of the set $A$ is the function $f \colon \mathbb{R}^n \to \mathbb{R}$ defined by 
+\[ f(u)=\begin{cases}
+          1 \quad &\text{if $u$ is in } $A$ \\
+          0 \quad &\text{if $u$ is not in } $A$ \\
+          \end{cases}\]
+Prove that this characteristic function is continuous at each interior point of $A$ and at each exterior point of $A$ but fails to be continuous at each boundary point of $A$.
+
+\begin{proof}
+Recall that a point $u$ is an interior point of $A$ if there exists an $r>0$ such that $B_r(u) \subseteq A$. Also recall that $u$ is an exterior point of $A$ if there exists an $r>0$ such that $B_r(u) \subseteq \mathbb{R}^n \setminus A$. Finally, recall that $u$ is a boundary point of $A$ if there exists an $r > 0$ such that $B_r(u)$ contains points in $A$ and $\mathbb{R}^n \setminus A$. To this end:
+\begin{itemize}
+    \item Let $u \in \text{int } A \subseteq A$. Then by definition, there exists $r>0$ such that $B_r(u) \subseteq A$. Take any $\{u_k\}$ converging to $u$; by definition of convergence, there exists $K \in \mathbb{N}$ such that for all $k \geq K$, $u_k \in B_r(u)$, so that $f(u_k) = 1$ for all $k \geq K$. Note also that $f(u) = 1$, so that $\{u_k\} \to u \implies \{f(u_k)\} \to f(u)$, so that $f$ is continuous at any $u \in \text{int } A$.
+    \item Let $u \in \text{ext } A \subseteq \mathbb{R}^n \setminus A$. Then by definition, there exists $r>0$ such that $B_r(u) \subseteq \mathbb{R}^n \setminus A$. Take any $\{u_k\}$ converging to $u$; by definition of convergence, there exists $K \in \mathbb{N}$ such that for all $k \geq K$, $u_k \in B_r(u)$, so that $f(u_k) = 0$ for all $k \geq K$. Note also that $f(u) = 0$, so that $\{u_k\} \to u \implies \{f(u_k)\} \to f(u)$, so that $f$ is continuous at any $u \in \text{ext } A$.
+    \item Let $u \in \text{bd } A$. Construct the sequences $\{u_k\}$ and $\{v_k\}$ by taking $u_k \in A \cap B_{1/k}(u)$ and $v_k \in (\mathbb{R}^n \setminus A) \cap B_{1/k}(u)$ for each $k \in \mathbb{N}$. Then it follows that $f(u_k) = 1$ and $f(v_k) = 0$ for each natural number k, but both $\{u_k\}$ and $\{u_k\}$ converge to $u$, which disproves the continuity of $f$ at $u$. 
+\end{itemize}
+
+\end{proof}
+
+\subsection*{Problem 4}
+
+Let $A \subseteq \mathbb{R}^n$ and $u \in A$. Suppose that $F, G \colon A \to \mathbb{R}^m$ are continuous mappings at $u$. 
+
+\begin{enumerate}[label = \alph*)]
+    \item Define the function $f \colon A \to \mathbb{R}$ by
+    \[ f(v) = \langle F(v), G(v) \rangle, \quad v \in A\]
+    Prove that $f$ is continuous at $u$.
+    \item Define the function $g \colon A \to \mathbb{R}$ by
+    \[ g(v) = ||F(v)||, \quad v \in A\]
+    Prove that $g$ is continuous at $u$.
+    
+\end{enumerate}
+
+\begin{proof}
+\begin{enumerate}[label = \alph*)]
+    \item Because $F(v)$ and $G(v)$ are continuous at $u$, it follows that the components of $F(v)$ and $G(v)$ are also continuous at $u$, so that $F_1(v)\cdots F_m(v)$ and $G_1(v)\cdots G_m(v)$ are continuous at $u$, where $F_i(v)$ and $G_i(v)$ denote the $i$th component functions of $F$ and $G$ at $v$ respectively. Then, by definition of scalar product, we have:
+    \[ \langle F(v), G(v) \rangle = \langle (F_1(v),\cdots, F_m(v)), (G_1(v),\cdots, G_m(v))\rangle\]
+    \[ = F_1(v)G_1(v) + \cdots + F_m(v)G_m(v)\]
+    By continuity of sums and products of continuous functions, it follows that $\langle F(v), G(v) \rangle$ is continuous at $u$.
+    \item The norm is a continuous function and $F(v)$ is continuous at $u$, so that by the continuity of composition of continuous functions $||F(v)||$ is continuous at $u$.
+    
+\end{enumerate}
+
+\end{proof}
+
+\subsection*{Problem 5}
+Suppose that the functions $f \colon \mathbb{R}^n \to \mathbb{R}$ and $g \colon \mathbb{R}^n \to \mathbb{R}$ are both continuous. Prove that the set $\{u \text{ in } \mathbb{R}^n \mid f(u) = g(u) = 0\}$ is closed in $\mathbb{R}^n$.
+
+\begin{proof}
+
+Consider the set $B = \{u \text{ in } \mathbb{R}^n \mid f(u) = 0\}$. Because the singleton 0 is closed in $\mathbb{R}$, it follows that $f^{-1}((0)) = B$ is closed in $\mathbb{R}^n$. \\
+
+Consider the set $C = \{u \text{ in } \mathbb{R}^n \mid g(u) = 0\}$. Because the singleton 0 is closed in $\mathbb{R}$, it follows that $g^{-1}((0)) = C$ is closed in $\mathbb{R}^n$. \\
+
+Since the intersection of closed sets is closed, it follows that $B \cap C$ is closed, and $B \cap C = \{u \text{ in } \mathbb{R}^n \mid f(u) = g(u) = 0\}$
+
+\end{proof}
+
+\subsection*{Problem 6}
+Give a counter example to the following incorrect statement.
+"If $f \colon \mathbb{R}^2 \to \mathbb{R}$ is continuous in each variable separately, then $f$ is continuous". Here, $f$ is continuous in $x$ if for each fixed $y \in \mathbb{R}$, the function $x \mapsto f(x, y)$ is continuous; the continuity of $f$ in $y$ is defined similarly.
+
+\begin{proof}
+Consider $f \colon \mathbb{R}^2 \to \mathbb{R}$:
+\[ f(x, y)=\begin{cases}
+          \frac{xy}{x^2 + y^2} \quad &\text{if x, y } \neq 0 \\
+          0 \quad &\text{if x and y }= 0 \\
+          \end{cases}\]
+If $y = 0$, then $f(x, 0) = 0$ because the numerator is 0, so the function is always 0 and thus continuous. Fix $y = c \neq 0$; then $f(x, c) = \frac{xc}{x^2 + c}$. This is a quotient of continuous functions with a nonzero denominator, so it is continuous. \\
+We show that $f$ is not continuous. If we approach (0, 0) along the line $y = x$, we have that $\lim_{(x, y)\to(0, 0)} f(x, y) = \frac{x^2}{x^2 + x^2} = \frac{1}{2}$, but $f(0, 0) = 0 \neq \frac{1}{2}$; thus $f$ is not continuous at $(0, 0)$. 
+\end{proof}
+
+\subsection*{Problem 7}
+Let $A$ be a bounded set in $\mathbb{R}^n$. Prove that for any $a \in \mathbb{R}^n$, there exists $s > 0$ such that $A \subseteq B_s(a)$
+\begin{proof}
+By definition, for any $u \in A$, we have that $||u|| \leq M$ for some $M > 0$. Set $s = 2M + ||a|| + 1$. Then, by the triangle inequality:
+
+\[ ||u-a|| \leq ||u|| + ||a|| \leq M + ||a|| < 2M + ||a|| < 2M + ||a|| + 1\]
+
+So that $u \in B_s(a)$ if $u \in A$.
+
+\end{proof}
+\subsection*{Problem 8}
+Let $A_1, \cdots , A_n$ be subsets of $\mathbb{R}$. Consider the Cartesian product
+\[ A = A_1 \times \cdots \times A_n \coloneqq \{x = (x_1, \cdots, x_n) \colon x_j \in A_j \text{ for all } 1 \leq j \leq n\} \subseteq \mathbb{R}^n\]
+\begin{enumerate}
+    \item Prove that $A$ is closed in $\mathbb{R}^n$ if each $A_j$ is closed in $\mathbb{R}$.
+    \item Prove that $A$ is open in $\mathbb{R}^n$ if each $A_j$ is open in $\mathbb{R}$.
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}
+    \item Take a sequence $\{u_k\} \in A$ converging to $u$. We have that $p_i(u) = \lim_{k \to \infty} p_i(u_k)$; because each $A_i$ is closed, it follows that $\lim_{k \to \infty} p_i(u_k) = p_i(u) \in A_i$. Since each $p_i(u) \in A_i$, it follows that $u \in A$, so $A$ is closed.
+    \item Let $u \in A$ be arbitrary. Because each $A_j$ is open, for any $u_j \in A_j$ there exists an open ball $B_{r_j}(u_j) \subseteq A_j$. Take $r = \min{(r_1,\cdots,r_n)}$; then it follows that each $u_j \in B_r(u_j) \subseteq A_j$; this implies that $u \in A$ if $u \in B_r(u)$, so $A$ is open.
+\end{enumerate}
+
+\end{proof}
+
+
+\end{document}
