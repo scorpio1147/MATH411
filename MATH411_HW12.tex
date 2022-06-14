@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amsmath} 
+\usepackage[]{amssymb} 
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{gensymb}
+
+\DeclareMathOperator{\vol}{vol}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+
+\title{HW 12 - MATH411}
+\author{Danesh Sivakumar}
+\date{May 1, 2022}
+
+\begin{document}
+\maketitle 
+
+
+\subsection*{Problem 1}
+
+\begin{proof}
+First, observe that the image of $g$ is unbounded, so the graph of $g$ is unbounded. The union of any finite collection of generalized rectangles is bounded. This means that it cannot cover the graph of $g$. Hence the graph of $g$ does not have Jordan content zero.
+
+\end{proof}
+
+
+\subsection*{Problem 2}
+
+\begin{proof} 
+We split up the boundary into the following domains $D_1 = \{(x,g(x)) : x \in [0,1]\}$, $D_2 = \{(0,y): y \in [-2,g(0)]$, $D_3 = \{(x,-2) : x \in [0,1]\}$, and $D_4 = \{(1,y): y \in [-2,g(1)]$. The boundary of $D$ is the union of the domains, so it is $D_1 \cup D_2 \cup D_3 \cup D_4$. We observe that $D_2$, $D_3$, and $D_4$ have Jordan content zero as they are continuous line segments in $\mathbb{R}^2$. Also, note that $D_1$ is the graph of the function $f(x) = \sin(1/x)$. Because $f$ is continuous on $(0,1]$, it follows that the set of discontinuities of $f$ is finite, so has Jordan content zero.By Corollary 18.26 in the book, we have that $D_1$ has Jordan content zero. As a result, we conclude that the boundary of $D$ has Jordan content zero since it is the finite union of sets with Jordan content zero. Hence we conclude that $D$ is a Jordan domain.
+\end{proof}
+
+\subsection*{Problem 3}
+
+\begin{proof}
+We split up the region of integration into the following domains $D_1 = \{(x,y) \in [0,1]^2 : y \geq 2x \}$, $D_2 = \{(x,y) \in [0,1]^2 : 2x > y > x \}$, and $D_3 = \{(x,y) \in [0,1]^2 : x \geq y \}$.  These sets are obviously pairwise disjoint, meaning that their pairwise intersections are empty and have Jordan content zero. Note that $f \colon D_1 \to \mathbb{R}$ is $f(x,y) = x$ which is integrable and $f \colon D_2 \to \mathbb{R}$ is $f(x,y) = x^2$ which is integrable and $f \colon D_3 \to \mathbb{R}$ is $f(x,y) = x^3$ which is integrable. We can thus use Theorem 18.30 in the book to deduce that $f \colon D \to \mathbb{R}$ is integrable and \[\int_D f = \int_{D_1} f + \int_{D_2} f + \int_{D_3} f = \int_{D_1} x + \int_{D_2} x^2 + \int_{D_3} x^3.\]
+\end{proof}
+
+\subsection*{Problem 4}
+
+\begin{proof}
+We apply Fubini's Theorem to each of the integrals and deduce that 
+\[
+      \int_D f = \int_0^1 \left[\int_{2x}^1 x \, dy\right] dx + \int_0^1\left[\int_{x}^{2x} x^2 \, dy \right] dx + \int_0^1\left[\int_{0}^{x} x^3 \, dy \right] dx \]
+      \[ \int_0^1 [1-2x^2] \, dx + \int_0^1 [x^3] \, dx + \int_0^1 [x^4] \, dx \]
+      \[ (1-2/3)+(1/4)+(1/5) = 47/60 \]
+    
+\end{proof}
+
+
+\subsection*{Problem 5}
+
+\begin{proof}
+Note that for the first integral,
+\[ \int_{0}^{3}\left[ \int_{1}^{\sqrt{4-y}}(x + y) dx\right]dy = \int_{0}^{3} \left[ \frac{3}{2} - \frac{3y}{2} + y\sqrt{4 - y}\right] dy = \frac{9}{2} - \frac{27}{4} + \frac{94}{15} = \frac{241}{60}\]
+Also, note that for the second integral
+\[ \int_{1}^{2} \left[ \int_{0}^{4-x^2} (x + y) dy \right] dx = \int_{1}^{2} \left( \frac{x^4}{2} - x^3 - 4x^2 + 4x + 8 \right) dx = \frac{188}{15} - \frac{511}{60} = \frac{241}{60}\]
+\end{proof}
+
+\subsection*{Problem 6}
+
+\begin{proof}
+For simplicity, we denote $\int f(x, y) dx = F_x(x, y)$ and similarly for integration with respect to other variables. Then we have (by elementary integration)
+\[ \int_a^b \left[ \int_a^x f(x, y) dy\right] dx = F_{yx}(b, b) - F_{yx}(b, a)\]
+We also have that
+\[ \int_a^b \left[ \int_y^b f(x, y) dx\right] dy = F_{xy}(a, a) - F_{xy}(b, a)\]
+Observe by Fubini's theorem, we have that
+\[ \int_a^b \left[ \int_c^d f(x, y) dy\right] dx = \int_c^d \left[ \int_a^b f(x, y) dx\right] dy\]
+which implies that
+\[ F_{yx}(b, b) = F_{xy}(a, a)\]
+and
+\[ F_{yx}(b, a) = F_{xy}(b, a)\]
+and the equality of the two main integrals follows from this.
+\end{proof}
+
+\subsection*{Problem 7}
+
+\begin{proof}
+It suffices to show that the function is discontinuous at an uncountable number of points, because this will imply that the set of discontinuities does not have Jordan content zero. To this end, we will show that $f$ is discontinuous for $y \in [0, 1/2) \cup (1/2, 1]$. First, suppose $x$ is rational and take a sequence of irrationals $\{x_k\}$ converging to $x$. Then it follows that $\{f(x_k, y)\} \to 2y$ but $f(x, y) = 1$ with $2y \neq 1$; thus $f$ is discontinuous for all rational $x$. Now suppose $x$ is irrational and take a sequence of rationals $\{x_k\}$ converging to $x$. Then it follows that $\{f(x_k, y)\} \to 1$ but $f(x, y) = 2y$ with $2y \neq 1$. Thus $f$ is discontinuous for all irrational $x$. Thus it follows that $f$ is discontinuous for all $(x, y) \in [0, 1] \times D$ where $D = [0, 1/2) \cup (1/2, 1]$. Thus the set of discontinuities is uncountable and cannot have Jordan content zero, meaning the function is not integrable. 
+\end{proof}
+
+\end{document}
